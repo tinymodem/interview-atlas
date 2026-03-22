@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "llm-engineer",
+    "name": {
+      "zh": "大模型工程师",
+      "en": "LLM Engineer"
+    },
+    "description": {
+      "zh": "聚焦模型原理、推理优化、RAG、Agent 和评测。",
+      "en": "Focused on model foundations, inference, RAG, agents, and evaluation."
+    },
+    "questionCount": 3
+  },
+  {
+    "slug": "ai-product-manager",
+    "name": {
+      "zh": "AI 产品经理",
+      "en": "AI Product Manager"
+    },
+    "description": {
+      "zh": "围绕需求定义、评测、上线风险和用户体验。",
+      "en": "Focused on problem framing, evaluation, launch risk, and user experience."
+    },
+    "questionCount": 1
+  }
+]

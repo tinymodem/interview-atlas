@@ -1,0 +1,14 @@
+{
+  "brand": {
+    "zh": "面试资料铺",
+    "en": "Interview Atlas"
+  },
+  "subtitle": {
+    "zh": "AI 与大模型面试题整理站",
+    "en": "A bilingual interview prep library for AI and LLM roles"
+  },
+  "description": {
+    "zh": "系统整理 AI、大模型、RAG、Agent 与推理部署相关面试题，帮助你更快进入状态。",
+    "en": "A bilingual library of interview questions covering AI, LLMs, RAG, agents, and inference systems."
+  }
+}

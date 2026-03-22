@@ -1,0 +1,25 @@
+{
+  "id": 301,
+  "number": "1",
+  "title": {
+    "zh": "设计 AI 产品评测体系时，为什么不能只看准确率？",
+    "en": "Why is accuracy alone not enough when designing an evaluation system for an AI product?"
+  },
+  "examPoint": {
+    "zh": "考察你是否能把模型能力、用户体验和业务指标联系起来。",
+    "en": "This checks whether you can connect model quality, user experience, and business metrics."
+  },
+  "approach": {
+    "zh": "从离线评测、在线指标、安全性和用户主观满意度四个角度作答。",
+    "en": "Answer through offline evaluation, online metrics, safety, and perceived user quality."
+  },
+  "answerHtml": {
+    "zh": "<h2>参考答案</h2>\n<p>准确率只是某一类任务下的单点指标，但 AI 产品上线后还会受到延迟、稳定性、拒答策略、幻觉率、成本、转化率和用户主观满意度影响。</p>\n<p>如果只看准确率，可能会得到一个实验室里表现不错、但线上体验很差的系统。更完整的评测体系通常包括：离线基准、人工标注抽检、线上漏斗指标、安全风险监控，以及不同用户场景下的满意度反馈。</p>\n",
+    "en": "<h2>Reference Answer</h2>\n<p>Accuracy is only one narrow metric for one class of tasks. Once an AI product is live, outcomes also depend on latency, stability, refusal behavior, hallucination rate, unit cost, conversion, and user satisfaction.</p>\n<p>If you optimize only for accuracy, you can end up with a system that looks strong in the lab but performs poorly in production. A more complete evaluation stack usually combines offline benchmarks, human review, online funnel metrics, safety monitoring, and user satisfaction signals across scenarios.</p>\n"
+  },
+  "pitfallHtml": {
+    "zh": "<p>只会说多指标更全面，但说不出哪些指标与真实产品结果相关。</p>\n",
+    "en": "<p>A weak answer says &#39;use more metrics&#39; without tying those metrics to real product outcomes.</p>\n"
+  },
+  "jobSlug": "ai-product-manager"
+}

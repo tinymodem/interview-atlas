@@ -1,0 +1,25 @@
+{
+  "id": 102,
+  "number": "2",
+  "title": {
+    "zh": "为什么大模型推理会受 KV Cache 影响很大？",
+    "en": "Why does KV cache have such a large impact on LLM inference?"
+  },
+  "examPoint": {
+    "zh": "考察你对自回归生成、attention 复杂度和显存瓶颈的理解。",
+    "en": "考察你对自回归生成、attention 复杂度和显存瓶颈的理解。"
+  },
+  "approach": {
+    "zh": "先讲没有 KV Cache 时每轮都要重复计算历史 token，再讲它如何用显存换时间，最后提显存占用和 batch trade-off。",
+    "en": "Start with the cost of recomputing past tokens without caching, then explain how KV cache trades memory for speed, and close with memory and batching trade-offs."
+  },
+  "answerHtml": {
+    "zh": "<h2>参考答案</h2>\n<p>在自回归生成里，每生成一个新 token 都要重新参与 attention。没有 KV Cache 时，历史 token 的 key/value 会反复计算，计算量随着序列增长迅速增加。</p>\n<p>KV Cache 的做法是把历史 token 的 key 和 value 直接缓存下来，下一步生成时只计算新 token，再和缓存拼接参与注意力。这会显著降低重复计算，提高 token 吞吐。</p>\n<p>代价是显存占用会随着上下文长度、层数、头数和 batch 一起增长，所以实际工程里经常要在上下文长度、并发和量化之间做权衡。</p>\n",
+    "en": "<h2>Reference Answer</h2>\n<p>In autoregressive decoding, every new token participates in attention with the full history. Without a KV cache, the model repeatedly recomputes keys and values for previous tokens, so the cost grows quickly with sequence length.</p>\n<p>A KV cache stores those historical keys and values so the next decoding step only computes the new token and attends against cached state. That removes a large amount of redundant work and improves token throughput.</p>\n<p>The trade-off is memory pressure: cache size grows with context length, model depth, number of heads, and batch size, so real systems balance context, concurrency, and quantization carefully.</p>\n"
+  },
+  "pitfallHtml": {
+    "zh": "<p>只说“缓存更快”但讲不出它为什么更快，也没有提到显存成本。</p>\n",
+    "en": "<p>只说“缓存更快”但讲不出它为什么更快，也没有提到显存成本。</p>\n"
+  },
+  "jobSlug": "llm-engineer"
+}

@@ -1,0 +1,25 @@
+{
+  "id": 201,
+  "number": "1",
+  "title": {
+    "zh": "RAG 项目中召回和排序分别解决什么问题？",
+    "en": "What problems do retrieval and reranking solve in a RAG pipeline?"
+  },
+  "examPoint": {
+    "zh": "考察你是否理解召回负责覆盖率，排序负责精度，以及它们对最终回答质量的影响。",
+    "en": "This checks whether you understand recall for coverage, reranking for precision, and how both affect answer quality."
+  },
+  "approach": {
+    "zh": "先定义召回和排序，再从覆盖率、噪声控制和成本角度解释二者分工。",
+    "en": "Define retrieval and reranking first, then explain their split through coverage, noise control, and cost."
+  },
+  "answerHtml": {
+    "zh": "<h2>参考答案</h2>\n<p>在 RAG 里，<strong>召回</strong>负责从大规模知识库中尽量把可能相关的文档找出来，目标是高覆盖率；<strong>排序</strong>负责在召回候选中进一步判断哪些最相关，目标是提高精度、减少噪声。</p>\n<p>如果只有召回，没有排序，模型会看到很多杂讯上下文；如果只有排序，没有足够好的召回，真正相关的文档可能根本进不了候选集。工程上通常会先做便宜的大范围召回，再做更贵但更精细的 rerank。</p>\n",
+    "en": "<h2>Reference Answer</h2>\n<p>In RAG, <strong>retrieval</strong> is responsible for pulling a broad candidate set from a large corpus, so its main goal is coverage. <strong>Reranking</strong> then scores that candidate set more precisely to surface the most relevant items and suppress noise.</p>\n<p>If you only retrieve, the model sees too much irrelevant context. If you only rerank but retrieval misses the right documents, the best evidence never reaches the candidate set. In practice, teams often pair a cheap broad retriever with a more expensive but more precise reranker.</p>\n"
+  },
+  "pitfallHtml": {
+    "zh": "<p>把召回和排序混成同一个概念，或者只讲 embedding 相似度，不讲候选集质量。</p>\n",
+    "en": "<p>A common issue is collapsing retrieval and reranking into one idea or talking only about embedding similarity without discussing candidate quality.</p>\n"
+  },
+  "jobSlug": "llm-engineer"
+}

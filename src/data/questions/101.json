@@ -1,0 +1,25 @@
+{
+  "id": 101,
+  "number": "1",
+  "title": {
+    "zh": "Transformer 的核心组件有哪些？面试时应该怎么讲清楚？",
+    "en": "What are the core components of a Transformer, and how should you explain them in an interview?"
+  },
+  "examPoint": {
+    "zh": "考察你是否理解 embedding、位置编码、多头注意力、残差连接、层归一化和前馈网络之间的关系。",
+    "en": "This tests whether you understand embeddings, positional encoding, multi-head attention, residual connections, layer normalization, and feed-forward layers as one coherent system."
+  },
+  "approach": {
+    "zh": "建议按数据流来讲：输入表示、注意力如何建模上下文、残差和归一化如何稳定训练，最后补充编码器/解码器差异。",
+    "en": "Explain it as a data flow: input representation, how attention captures context, how residual paths and normalization stabilize training, and then the encoder-versus-decoder distinction."
+  },
+  "answerHtml": {
+    "zh": "<h2>参考答案</h2>\n<p>Transformer 一般可以拆成四类核心部件：</p>\n<ol>\n<li><strong>输入表示</strong>：token embedding 加上位置编码，告诉模型 token 是什么、位于哪里。</li>\n<li><strong>注意力层</strong>：通过 self-attention 让每个 token 按需聚合上下文信息，多头机制让模型在不同子空间学习不同关系。</li>\n<li><strong>前馈网络</strong>：在每个位置上做非线性变换，提升表达能力。</li>\n<li><strong>训练稳定模块</strong>：残差连接和 LayerNorm 让深层网络更容易训练。</li>\n</ol>\n<p>如果是面试回答，最好再补一句：编码器擅长理解，解码器擅长自回归生成，而现代大模型大多是 decoder-only 架构。</p>\n",
+    "en": "<h2>Reference Answer</h2>\n<p>A Transformer can usually be explained through four building blocks:</p>\n<ol>\n<li><strong>Input representation</strong>: token embeddings plus positional encoding tell the model what each token is and where it sits in the sequence.</li>\n<li><strong>Attention layers</strong>: self-attention lets each token gather context from other tokens, while multi-head attention learns multiple relational views in parallel.</li>\n<li><strong>Feed-forward layers</strong>: position-wise nonlinear transformations improve representational capacity.</li>\n<li><strong>Training stabilizers</strong>: residual paths and LayerNorm make deep stacks train reliably.</li>\n</ol>\n<p>For interviews, it helps to add that encoders are optimized for understanding, decoders for autoregressive generation, and many modern LLMs are decoder-only.</p>\n"
+  },
+  "pitfallHtml": {
+    "zh": "<p>常见问题是只会背 self-attention，而忽略位置编码、残差连接以及为什么多头注意力有效。</p>\n",
+    "en": "<p>A common mistake is to only recite self-attention and ignore positional encoding, residual connections, and why multi-head attention matters.</p>\n"
+  },
+  "jobSlug": "llm-engineer"
+}

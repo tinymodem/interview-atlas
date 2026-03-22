@@ -1,0 +1,42 @@
+{
+  "slug": "ai-product-manager",
+  "name": {
+    "zh": "AI 产品经理",
+    "en": "AI Product Manager"
+  },
+  "description": {
+    "zh": "围绕需求定义、评测、上线风险和用户体验。",
+    "en": "Focused on problem framing, evaluation, launch risk, and user experience."
+  },
+  "questionCount": 1,
+  "chapters": [
+    {
+      "id": 3,
+      "number": "1",
+      "title": {
+        "zh": "产品与评测",
+        "en": "Product and Evaluation"
+      },
+      "sections": [
+        {
+          "id": 31,
+          "number": "1.1",
+          "title": {
+            "zh": "效果衡量",
+            "en": "Quality Measurement"
+          },
+          "questions": [
+            {
+              "id": 301,
+              "number": "1",
+              "title": {
+                "zh": "设计 AI 产品评测体系时，为什么不能只看准确率？",
+                "en": "Why is accuracy alone not enough when designing an evaluation system for an AI product?"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

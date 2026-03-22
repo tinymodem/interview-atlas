@@ -1,0 +1,78 @@
+{
+  "slug": "llm-engineer",
+  "name": {
+    "zh": "大模型工程师",
+    "en": "LLM Engineer"
+  },
+  "description": {
+    "zh": "聚焦模型原理、推理优化、RAG、Agent 和评测。",
+    "en": "Focused on model foundations, inference, RAG, agents, and evaluation."
+  },
+  "questionCount": 3,
+  "chapters": [
+    {
+      "id": 1,
+      "number": "1",
+      "title": {
+        "zh": "模型基础",
+        "en": "Model Foundations"
+      },
+      "sections": [
+        {
+          "id": 11,
+          "number": "1.1",
+          "title": {
+            "zh": "Transformer",
+            "en": "Transformer"
+          },
+          "questions": [
+            {
+              "id": 101,
+              "number": "1",
+              "title": {
+                "zh": "Transformer 的核心组件有哪些？面试时应该怎么讲清楚？",
+                "en": "What are the core components of a Transformer, and how should you explain them in an interview?"
+              }
+            },
+            {
+              "id": 102,
+              "number": "2",
+              "title": {
+                "zh": "为什么大模型推理会受 KV Cache 影响很大？",
+                "en": "Why does KV cache have such a large impact on LLM inference?"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "number": "2",
+      "title": {
+        "zh": "RAG 与 Agent",
+        "en": "RAG and Agents"
+      },
+      "sections": [
+        {
+          "id": 21,
+          "number": "2.1",
+          "title": {
+            "zh": "检索增强生成",
+            "en": "Retrieval-Augmented Generation"
+          },
+          "questions": [
+            {
+              "id": 201,
+              "number": "1",
+              "title": {
+                "zh": "RAG 项目中召回和排序分别解决什么问题？",
+                "en": "What problems do retrieval and reranking solve in a RAG pipeline?"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

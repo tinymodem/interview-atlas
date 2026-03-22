@@ -1,0 +1,198 @@
+{
+  "site": {
+    "brand": {
+      "zh": "面试资料铺",
+      "en": "Interview Atlas"
+    },
+    "subtitle": {
+      "zh": "AI 与大模型面试题整理站",
+      "en": "A bilingual interview prep library for AI and LLM roles"
+    },
+    "description": {
+      "zh": "系统整理 AI、大模型、RAG、Agent 与推理部署相关面试题，帮助你更快进入状态。",
+      "en": "A bilingual library of interview questions covering AI, LLMs, RAG, agents, and inference systems."
+    }
+  },
+  "jobs": [
+    {
+      "slug": "llm-engineer",
+      "name": {
+        "zh": "大模型工程师",
+        "en": "LLM Engineer"
+      },
+      "description": {
+        "zh": "聚焦模型原理、推理优化、RAG、Agent 和评测。",
+        "en": "Focused on model foundations, inference, RAG, agents, and evaluation."
+      },
+      "chapters": [
+        {
+          "id": 1,
+          "number": "1",
+          "title": {
+            "zh": "模型基础",
+            "en": "Model Foundations"
+          },
+          "sections": [
+            {
+              "id": 11,
+              "number": "1.1",
+              "title": {
+                "zh": "Transformer",
+                "en": "Transformer"
+              },
+              "questions": [
+                {
+                  "id": 101,
+                  "number": "1",
+                  "title": {
+                    "zh": "Transformer 的核心组件有哪些？面试时应该怎么讲清楚？",
+                    "en": "What are the core components of a Transformer, and how should you explain them in an interview?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解 embedding、位置编码、多头注意力、残差连接、层归一化和前馈网络之间的关系。",
+                    "en": "This tests whether you understand embeddings, positional encoding, multi-head attention, residual connections, layer normalization, and feed-forward layers as one coherent system."
+                  },
+                  "approach": {
+                    "zh": "建议按数据流来讲：输入表示、注意力如何建模上下文、残差和归一化如何稳定训练，最后补充编码器/解码器差异。",
+                    "en": "Explain it as a data flow: input representation, how attention captures context, how residual paths and normalization stabilize training, and then the encoder-versus-decoder distinction."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\nTransformer 一般可以拆成四类核心部件：\n\n1. **输入表示**：token embedding 加上位置编码，告诉模型 token 是什么、位于哪里。\n2. **注意力层**：通过 self-attention 让每个 token 按需聚合上下文信息，多头机制让模型在不同子空间学习不同关系。\n3. **前馈网络**：在每个位置上做非线性变换，提升表达能力。\n4. **训练稳定模块**：残差连接和 LayerNorm 让深层网络更容易训练。\n\n如果是面试回答，最好再补一句：编码器擅长理解，解码器擅长自回归生成，而现代大模型大多是 decoder-only 架构。",
+                    "en": "## Reference Answer\n\nA Transformer can usually be explained through four building blocks:\n\n1. **Input representation**: token embeddings plus positional encoding tell the model what each token is and where it sits in the sequence.\n2. **Attention layers**: self-attention lets each token gather context from other tokens, while multi-head attention learns multiple relational views in parallel.\n3. **Feed-forward layers**: position-wise nonlinear transformations improve representational capacity.\n4. **Training stabilizers**: residual paths and LayerNorm make deep stacks train reliably.\n\nFor interviews, it helps to add that encoders are optimized for understanding, decoders for autoregressive generation, and many modern LLMs are decoder-only."
+                  },
+                  "pitfall": {
+                    "zh": "常见问题是只会背 self-attention，而忽略位置编码、残差连接以及为什么多头注意力有效。",
+                    "en": "A common mistake is to only recite self-attention and ignore positional encoding, residual connections, and why multi-head attention matters."
+                  }
+                },
+                {
+                  "id": 102,
+                  "number": "2",
+                  "title": {
+                    "zh": "为什么大模型推理会受 KV Cache 影响很大？",
+                    "en": "Why does KV cache have such a large impact on LLM inference?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你对自回归生成、attention 复杂度和显存瓶颈的理解。"
+                  },
+                  "approach": {
+                    "zh": "先讲没有 KV Cache 时每轮都要重复计算历史 token，再讲它如何用显存换时间，最后提显存占用和 batch trade-off。",
+                    "en": "Start with the cost of recomputing past tokens without caching, then explain how KV cache trades memory for speed, and close with memory and batching trade-offs."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n在自回归生成里，每生成一个新 token 都要重新参与 attention。没有 KV Cache 时，历史 token 的 key/value 会反复计算，计算量随着序列增长迅速增加。\n\nKV Cache 的做法是把历史 token 的 key 和 value 直接缓存下来，下一步生成时只计算新 token，再和缓存拼接参与注意力。这会显著降低重复计算，提高 token 吞吐。\n\n代价是显存占用会随着上下文长度、层数、头数和 batch 一起增长，所以实际工程里经常要在上下文长度、并发和量化之间做权衡。",
+                    "en": "## Reference Answer\n\nIn autoregressive decoding, every new token participates in attention with the full history. Without a KV cache, the model repeatedly recomputes keys and values for previous tokens, so the cost grows quickly with sequence length.\n\nA KV cache stores those historical keys and values so the next decoding step only computes the new token and attends against cached state. That removes a large amount of redundant work and improves token throughput.\n\nThe trade-off is memory pressure: cache size grows with context length, model depth, number of heads, and batch size, so real systems balance context, concurrency, and quantization carefully."
+                  },
+                  "pitfall": {
+                    "zh": "只说“缓存更快”但讲不出它为什么更快，也没有提到显存成本。"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "number": "2",
+          "title": {
+            "zh": "RAG 与 Agent",
+            "en": "RAG and Agents"
+          },
+          "sections": [
+            {
+              "id": 21,
+              "number": "2.1",
+              "title": {
+                "zh": "检索增强生成",
+                "en": "Retrieval-Augmented Generation"
+              },
+              "questions": [
+                {
+                  "id": 201,
+                  "number": "1",
+                  "title": {
+                    "zh": "RAG 项目中召回和排序分别解决什么问题？",
+                    "en": "What problems do retrieval and reranking solve in a RAG pipeline?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解召回负责覆盖率，排序负责精度，以及它们对最终回答质量的影响。",
+                    "en": "This checks whether you understand recall for coverage, reranking for precision, and how both affect answer quality."
+                  },
+                  "approach": {
+                    "zh": "先定义召回和排序，再从覆盖率、噪声控制和成本角度解释二者分工。",
+                    "en": "Define retrieval and reranking first, then explain their split through coverage, noise control, and cost."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n在 RAG 里，**召回**负责从大规模知识库中尽量把可能相关的文档找出来，目标是高覆盖率；**排序**负责在召回候选中进一步判断哪些最相关，目标是提高精度、减少噪声。\n\n如果只有召回，没有排序，模型会看到很多杂讯上下文；如果只有排序，没有足够好的召回，真正相关的文档可能根本进不了候选集。工程上通常会先做便宜的大范围召回，再做更贵但更精细的 rerank。",
+                    "en": "## Reference Answer\n\nIn RAG, **retrieval** is responsible for pulling a broad candidate set from a large corpus, so its main goal is coverage. **Reranking** then scores that candidate set more precisely to surface the most relevant items and suppress noise.\n\nIf you only retrieve, the model sees too much irrelevant context. If you only rerank but retrieval misses the right documents, the best evidence never reaches the candidate set. In practice, teams often pair a cheap broad retriever with a more expensive but more precise reranker."
+                  },
+                  "pitfall": {
+                    "zh": "把召回和排序混成同一个概念，或者只讲 embedding 相似度，不讲候选集质量。",
+                    "en": "A common issue is collapsing retrieval and reranking into one idea or talking only about embedding similarity without discussing candidate quality."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "ai-product-manager",
+      "name": {
+        "zh": "AI 产品经理",
+        "en": "AI Product Manager"
+      },
+      "description": {
+        "zh": "围绕需求定义、评测、上线风险和用户体验。",
+        "en": "Focused on problem framing, evaluation, launch risk, and user experience."
+      },
+      "chapters": [
+        {
+          "id": 3,
+          "number": "1",
+          "title": {
+            "zh": "产品与评测",
+            "en": "Product and Evaluation"
+          },
+          "sections": [
+            {
+              "id": 31,
+              "number": "1.1",
+              "title": {
+                "zh": "效果衡量",
+                "en": "Quality Measurement"
+              },
+              "questions": [
+                {
+                  "id": 301,
+                  "number": "1",
+                  "title": {
+                    "zh": "设计 AI 产品评测体系时，为什么不能只看准确率？",
+                    "en": "Why is accuracy alone not enough when designing an evaluation system for an AI product?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否能把模型能力、用户体验和业务指标联系起来。",
+                    "en": "This checks whether you can connect model quality, user experience, and business metrics."
+                  },
+                  "approach": {
+                    "zh": "从离线评测、在线指标、安全性和用户主观满意度四个角度作答。",
+                    "en": "Answer through offline evaluation, online metrics, safety, and perceived user quality."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n准确率只是某一类任务下的单点指标，但 AI 产品上线后还会受到延迟、稳定性、拒答策略、幻觉率、成本、转化率和用户主观满意度影响。\n\n如果只看准确率，可能会得到一个实验室里表现不错、但线上体验很差的系统。更完整的评测体系通常包括：离线基准、人工标注抽检、线上漏斗指标、安全风险监控，以及不同用户场景下的满意度反馈。",
+                    "en": "## Reference Answer\n\nAccuracy is only one narrow metric for one class of tasks. Once an AI product is live, outcomes also depend on latency, stability, refusal behavior, hallucination rate, unit cost, conversion, and user satisfaction.\n\nIf you optimize only for accuracy, you can end up with a system that looks strong in the lab but performs poorly in production. A more complete evaluation stack usually combines offline benchmarks, human review, online funnel metrics, safety monitoring, and user satisfaction signals across scenarios."
+                  },
+                  "pitfall": {
+                    "zh": "只会说多指标更全面，但说不出哪些指标与真实产品结果相关。",
+                    "en": "A weak answer says 'use more metrics' without tying those metrics to real product outcomes."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

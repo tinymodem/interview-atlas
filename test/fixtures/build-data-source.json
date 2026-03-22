@@ -1,0 +1,61 @@
+{
+  "site": {
+    "brand": {
+      "zh": "面试资料铺",
+      "en": "Interview Atlas"
+    }
+  },
+  "jobs": [
+    {
+      "slug": "llm-engineer",
+      "name": {
+        "zh": "大模型工程师",
+        "en": "LLM Engineer"
+      },
+      "chapters": [
+        {
+          "id": 1,
+          "number": "1",
+          "title": {
+            "zh": "基础能力",
+            "en": "Core Foundations"
+          },
+          "sections": [
+            {
+              "id": 11,
+              "number": "1.1",
+              "title": {
+                "zh": "模型原理",
+                "en": "Model Basics"
+              },
+              "questions": [
+                {
+                  "id": 101,
+                  "number": "1",
+                  "title": {
+                    "zh": "解释 Transformer 的核心组件。",
+                    "en": "Explain the core components of a Transformer."
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解 attention、残差连接和前馈网络。"
+                  },
+                  "approach": {
+                    "zh": "先讲输入嵌入和位置编码，再讲注意力、残差和 FFN。",
+                    "en": "Cover embeddings and positional encoding first, then attention, residual paths, and the FFN."
+                  },
+                  "answer": {
+                    "zh": "## 中文答案\n\nTransformer 由多头注意力、前馈网络、残差连接和层归一化组成。",
+                    "en": "## English Answer\n\nA Transformer is built from multi-head attention, feed-forward layers, residual paths, and layer normalization."
+                  },
+                  "pitfall": {
+                    "zh": "只说 self-attention，不提位置编码和训练稳定性。"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
