@@ -7,16 +7,16 @@ interface BreadcrumbItem {
 
 export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav className="mb-5 flex flex-wrap items-center gap-1.5 text-sm text-nc-text-muted">
+    <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-[color:var(--text-muted)]">
       {items.map((item, index) => (
-        <span key={`${item.label}-${index}`} className="flex items-center gap-1.5">
-          {index > 0 && <span>/</span>}
+        <span key={`${item.label}-${index}`} className="inline-flex items-center gap-2">
+          {index > 0 && <span className="text-[color:var(--border-strong)]">/</span>}
           {item.href ? (
-            <Link href={item.href} className="transition-colors hover:text-nc-green">
+            <Link href={item.href} className="transition hover:text-[color:var(--brand-strong)]">
               {item.label}
             </Link>
           ) : (
-            <span className="text-nc-text">{item.label}</span>
+            <span className="font-medium text-[color:var(--text)]">{item.label}</span>
           )}
         </span>
       ))}

@@ -18,9 +18,9 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Header locale={locale as Locale} />
-      <main className="mx-auto flex-1 w-full max-w-[min(1200px,90%)] py-6">{children}</main>
+      <main className="doc-shell flex-1 py-8 md:py-10">{children}</main>
       <Footer locale={locale as Locale} />
     </div>
   );

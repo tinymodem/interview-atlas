@@ -1,27 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --page-bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-muted: #f5efe4;
+  --surface-subtle: #f2ece0;
+  --border: rgba(69, 50, 28, 0.12);
+  --border-strong: rgba(69, 50, 28, 0.2);
+  --text: #20160f;
+  --text-light: #54453a;
+  --text-muted: #7a695b;
+  --brand: #9a5b2d;
+  --brand-soft: #f1dfcf;
+  --brand-strong: #7f451f;
+  --warning-soft: #fff2e2;
+  --warning-text: #a14d17;
+  --shadow-soft: 0 14px 38px rgba(67, 41, 13, 0.08);
+  --shadow-card: 0 28px 70px rgba(67, 41, 13, 0.1);
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+}
+
 @layer base {
-  body {
-    @apply bg-[#f7f8f9] text-[#333] antialiased;
-    font-family: "PingFang SC", "Source Han Sans CN", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
-    font-size: 14px;
-    line-height: 21px;
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    @apply antialiased;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgba(154, 91, 45, 0.12), transparent 26%),
+      radial-gradient(circle at top right, rgba(125, 69, 31, 0.08), transparent 22%),
+      linear-gradient(180deg, #fbf8f1 0%, #f6f1e7 100%);
+    color: var(--text);
+    font-family: 'Manrope', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
   ::selection {
-    @apply bg-[#eefaf7] text-[#32ca99];
+    background: var(--brand-soft);
+    color: var(--brand-strong);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.03em;
+  }
+
+  a {
+    color: inherit;
   }
 }
 
 @layer components {
-  .answer-blur {
-    filter: blur(5px);
-    user-select: none;
-    transition: filter 0.4s ease;
+  .doc-shell {
+    @apply mx-auto w-full max-w-[min(1380px,94vw)];
   }
-  .answer-blur.revealed {
-    filter: blur(0);
-    user-select: auto;
+
+  .surface-card {
+    background: linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(255, 250, 241, 0.95));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-2xl);
+  }
+
+  .surface-panel {
+    background: rgba(255, 253, 248, 0.88);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em];
+    color: var(--brand);
+  }
+
+  .doc-prose {
+    max-width: none;
+    --tw-prose-body: var(--text-light);
+    --tw-prose-headings: var(--text);
+    --tw-prose-links: var(--brand-strong);
+    --tw-prose-bold: var(--text);
+    --tw-prose-bullets: var(--brand);
+    --tw-prose-quotes: var(--text-light);
+    --tw-prose-quote-borders: rgba(154, 91, 45, 0.28);
+    --tw-prose-counters: var(--text-muted);
+    --tw-prose-hr: rgba(69, 50, 28, 0.1);
+    --tw-prose-pre-bg: #21160f;
+    --tw-prose-pre-code: #f6eee6;
+    --tw-prose-code: var(--text);
+    --tw-prose-th-borders: rgba(69, 50, 28, 0.18);
+    --tw-prose-td-borders: rgba(69, 50, 28, 0.1);
+  }
+
+  .doc-prose h2 {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    scroll-margin-top: 6rem;
+  }
+
+  .doc-prose h3 {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .doc-prose p,
+  .doc-prose li,
+  .doc-prose blockquote,
+  .doc-prose ol,
+  .doc-prose ul,
+  .doc-prose pre {
+    margin-top: 1rem;
+  }
+
+  .doc-prose ol,
+  .doc-prose ul {
+    padding-left: 1.3rem;
+  }
+
+  .doc-prose li + li {
+    margin-top: 0.55rem;
+  }
+
+  .doc-prose p,
+  .doc-prose li,
+  .doc-prose blockquote {
+    line-height: 1.9;
+  }
+
+  .doc-prose code::before,
+  .doc-prose code::after {
+    content: none;
+  }
+
+  .doc-prose code {
+    border-radius: 999px;
+    background: rgba(154, 91, 45, 0.08);
+    padding: 0.18rem 0.45rem;
+    font-size: 0.92em;
+  }
+
+  .doc-prose blockquote {
+    background: rgba(154, 91, 45, 0.04);
+    border-radius: 18px;
+    padding: 1rem 1.2rem;
+  }
+
+  .doc-prose a {
+    color: var(--brand-strong);
+    text-decoration: underline;
+    text-decoration-color: rgba(127, 69, 31, 0.3);
+    text-underline-offset: 0.22em;
+  }
+
+  .doc-prose strong {
+    color: var(--text);
+  }
+
+  .doc-prose pre {
+    overflow-x: auto;
+    border-radius: 20px;
+    background: #21160f;
+    color: #f6eee6;
+    padding: 1rem 1.1rem;
+  }
+
+  .doc-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr) minmax(0, 250px);
+    gap: 24px;
+  }
+
+  @media (max-width: 1279px) {
+    .doc-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 260px);
+    }
+
+    .doc-grid > :first-child {
+      display: none;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .doc-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .doc-aside {
+      order: -1;
+    }
   }
 }

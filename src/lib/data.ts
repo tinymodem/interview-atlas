@@ -1,11 +1,13 @@
 import { readFileSync } from 'fs';
-import { join } from 'path';
-export { getLocaleLabel, getLocalizedPath, getText } from '@/lib/localization';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+export { getLocaleLabel, getLocalizedPath, getText } from './localization.ts';
 
 export const locales = ['zh', 'en'] as const;
 export type Locale = (typeof locales)[number];
 
-const DATA_DIR = join(process.cwd(), 'src', 'data');
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
+const DATA_DIR = join(MODULE_DIR, '..', 'data');
 const SITE_URL = 'https://tinymodem.github.io/interview-atlas';
 
 export interface LocalizedText {

@@ -11,64 +11,66 @@ function ChapterSection({ chapter, locale }: { chapter: Chapter; locale: Locale 
   const totalQuestions = chapter.sections.reduce((sum, section) => sum + section.questions.length, 0);
 
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
+    <section className="surface-panel overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-gray-50"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-[color:var(--surface-subtle)]"
       >
-        <div className="flex items-center gap-2">
-          <span className="h-4 w-1 rounded-full bg-nc-green" />
-          <span className="text-sm font-semibold text-nc-text">{getText(chapter.title, locale)}</span>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--brand)]">{chapter.number}</p>
+          <h3 className="mt-2 text-lg font-semibold text-[color:var(--text)]">{getText(chapter.title, locale)}</h3>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="rounded bg-nc-green-light px-2 py-0.5 text-xs text-nc-green">
+        <div className="flex items-center gap-3">
+          <span className="rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand-strong)]">
             {totalQuestions} {t(locale, 'questionCount')}
           </span>
-          <svg
-            className={`h-3.5 w-3.5 text-nc-text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
+          <span className={`text-sm text-[color:var(--text-muted)] transition-transform ${open ? 'rotate-180' : ''}`}>⌄</span>
         </div>
       </button>
 
       {open && (
-        <div>
-          {chapter.sections.map((section) => (
-            <div key={section.id}>
-              <div className="border-t border-gray-100 bg-[#f8f8f8] px-5 py-2">
-                <span className="text-xs font-medium text-nc-text-light">{getText(section.title, locale)}</span>
-              </div>
-
-              {section.questions.map((question, index) => (
-                <Link
-                  key={question.id}
-                  href={getLocalizedPath(locale, `/q/${question.id}`)}
-                  className="group flex items-center border-t border-gray-100 px-5 py-3 transition-colors hover:bg-nc-green-light/30"
-                >
-                  <span className="w-8 shrink-0 text-xs text-nc-text-muted">{index + 1}</span>
-                  <span className="flex-1 text-sm text-nc-text transition-colors group-hover:text-nc-green">
-                    {getText(question.title, locale)}
+        <div className="border-t border-[color:var(--border)] px-4 py-4">
+          <div className="space-y-4">
+            {chapter.sections.map((section) => (
+              <div key={section.id} className="rounded-[20px] border border-[color:var(--border)] bg-[color:var(--surface-subtle)] p-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--text-muted)]">{section.number}</p>
+                    <p className="mt-1 text-sm font-semibold text-[color:var(--text)]">{getText(section.title, locale)}</p>
+                  </div>
+                  <span className="text-xs text-[color:var(--text-muted)]">
+                    {section.questions.length} {t(locale, 'questionCount')}
                   </span>
-                  <svg className="ml-2 h-3.5 w-3.5 shrink-0 text-gray-300 transition-colors group-hover:text-nc-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              ))}
-            </div>
-          ))}
+                </div>
+
+                <div className="mt-4 space-y-2">
+                  {section.questions.map((question) => (
+                    <Link
+                      key={question.id}
+                      href={getLocalizedPath(locale, `/q/${question.id}`)}
+                      className="group flex items-start gap-3 rounded-[16px] bg-[color:var(--surface)] px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]"
+                    >
+                      <span className="mt-0.5 rounded-full bg-[color:var(--surface-subtle)] px-2 py-1 text-xs font-semibold text-[color:var(--brand-strong)]">
+                        {question.number}
+                      </span>
+                      <span className="flex-1 text-sm leading-7 text-[color:var(--text)] transition group-hover:text-[color:var(--brand-strong)]">
+                        {getText(question.title, locale)}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }
 
 export default function ChapterTree({ chapters, locale }: { chapters: Chapter[]; locale: Locale }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {chapters.map((chapter) => (
         <ChapterSection key={chapter.id} chapter={chapter} locale={locale} />
       ))}
