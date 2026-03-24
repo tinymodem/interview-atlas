@@ -28,12 +28,12 @@ export const uiText = {
     en: 'Method',
   },
   homeTitle: {
-    zh: 'AI / 大模型面试题库与复习入口',
-    en: 'AI / LLM Interview Question Bank and Study Entry',
+    zh: '从刷题到通关，只差一套好地图',
+    en: 'From Grinding to Landing — All You Need Is the Right Map',
   },
   homeSubtitle: {
-    zh: '帮助你更快进入 AI / 大模型面试状态，先找到值得看的专题，再进入高频题目。',
-    en: 'Get interview-ready faster for AI and LLM roles by finding the right tracks and high-signal questions first.',
+    zh: '题目有结构，复习有路径，每一步都在帮你离 offer 更近一点。',
+    en: 'Structured questions, guided study paths — every step brings you closer to the offer.',
   },
   allTracks: {
     zh: '全部方向',
@@ -184,12 +184,12 @@ export const uiText = {
     en: 'Explore tracks and question entry points across model basics, RAG, agents, evaluation, and engineering so you know what to review before deciding how deep to study.',
   },
   homeHeroKicker: {
-    zh: '专业面试题库网站',
-    en: 'Interview Question Platform',
+    zh: '你的 AI 面试备战主场',
+    en: 'Your AI Interview Home Ground',
   },
   homeHeroLead: {
-    zh: '让每一次复习都更接近真实面试。',
-    en: 'Make every review session feel closer to the real interview.',
+    zh: '别再盲目背答案——先搞懂思路，面试才能真正讲出自己的东西。',
+    en: 'Stop memorizing answers blindly — master the reasoning and make every interview answer truly yours.',
   },
   homepageOverview: {
     zh: '内容概览',
