@@ -4,7 +4,12 @@ import '@/app/globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://tinymodem.github.io/interview-atlas'),
   title: 'Interview Atlas',
-  description: 'A bilingual AI and LLM interview prep site built for GitHub Pages and search indexing.',
+  description: 'A multilingual AI and LLM interview prep site built for GitHub Pages and search indexing.',
+  verification: {
+    other: {
+      'msvalidate.01': '2D30F8D3D76790FE2E2D4BA11F54CD7F',
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
