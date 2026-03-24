@@ -18,12 +18,10 @@ const learningPath = [
 
 function TrackShelf({
   title,
-  tag,
   tracks,
   cta,
 }: {
   title: string;
-  tag: string;
   tracks: HomepageTrackCard[];
   cta: string;
 }) {
@@ -31,20 +29,16 @@ function TrackShelf({
     <section className="surface-panel p-6">
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
-          <p className="eyebrow">{tag}</p>
           <h2 className="mt-3 text-2xl font-semibold text-[color:var(--text)]">{title}</h2>
         </div>
       </div>
 
       <div className="space-y-4">
         {tracks.map((track, index) => (
-          <article key={`${tag}-${track.title}-${index}`} className="homepage-list-card flex flex-col gap-3 rounded-[24px] p-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-lg font-semibold text-[color:var(--text)]">{track.title}</h3>
-                <p className="mt-1 text-sm text-[color:var(--text-muted)]">{track.category}</p>
-              </div>
-              <span className="rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand-strong)]">{tag}</span>
+          <article key={`${track.title}-${index}`} className="homepage-list-card flex flex-col gap-3 rounded-[24px] p-5">
+            <div>
+              <h3 className="text-lg font-semibold text-[color:var(--text)]">{track.title}</h3>
+              <p className="mt-1 text-sm text-[color:var(--text-muted)]">{track.category}</p>
             </div>
 
             <p className="text-sm leading-7 text-[color:var(--text-light)]">{track.summary}</p>
@@ -71,7 +65,6 @@ function HotQuestionList({
   return (
     <section id="hot" className="surface-card px-6 py-8 md:px-10">
       <div className="max-w-3xl">
-        <p className="eyebrow">{t(locale, 'hotQuestions')}</p>
         <h2 className="mt-4 text-3xl font-semibold text-[color:var(--text)] md:text-4xl">{t(locale, 'hotQuestions')}</h2>
       </div>
 
@@ -120,13 +113,11 @@ export default function HomepageContent({ locale }: { locale: Locale }) {
       <section className="grid gap-6 xl:grid-cols-2 xl:items-start">
         <TrackShelf
           title={t(locale, 'latestTracks')}
-          tag={t(locale, 'latestTrackTag')}
           tracks={latestTracks}
           cta={t(locale, 'openTopic')}
         />
         <TrackShelf
           title={t(locale, 'hotTracks')}
-          tag={t(locale, 'hotTrackTag')}
           tracks={hotTracks}
           cta={t(locale, 'openTopic')}
         />
@@ -137,7 +128,6 @@ export default function HomepageContent({ locale }: { locale: Locale }) {
       <section id="method" className="surface-card px-6 py-8 md:px-10">
         <div className="grid gap-8 xl:grid-cols-[0.8fr_1.2fr] xl:items-start">
           <div>
-            <p className="eyebrow">{t(locale, 'learningPath')}</p>
             <h2 className="mt-4 text-3xl font-semibold text-[color:var(--text)] md:text-4xl">{t(locale, 'platformValueTitle')}</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <article className="homepage-stat-card rounded-[20px] p-4">

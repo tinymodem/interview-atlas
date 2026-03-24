@@ -263,14 +263,6 @@ export const uiText = {
     zh: '方向分类',
     en: 'Category',
   },
-  hotTrackTag: {
-    zh: '高频',
-    en: 'Trending',
-  },
-  latestTrackTag: {
-    zh: '新增',
-    en: 'New',
-  },
   platformValueTitle: {
     zh: '不只是给题，也给复习顺序',
     en: 'More than prompts, it gives you a review order',
