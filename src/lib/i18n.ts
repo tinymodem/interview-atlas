@@ -264,12 +264,12 @@ export const uiText = {
     en: 'Category',
   },
   hotTrackTag: {
-    zh: '热门',
-    en: 'Popular',
+    zh: '高频',
+    en: 'Trending',
   },
   latestTrackTag: {
-    zh: '最新',
-    en: 'Latest',
+    zh: '新增',
+    en: 'New',
   },
   platformValueTitle: {
     zh: '不只是给题，也给复习顺序',

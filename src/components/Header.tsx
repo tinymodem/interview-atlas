@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { t } from '@/lib/i18n';
 import { getLocaleSwitchPath, getLocalizedPath, type Locale } from '@/lib/localization';
 
@@ -16,9 +17,7 @@ export default function Header({ locale }: { locale: Locale }) {
       <div className="doc-shell flex min-h-[76px] items-center justify-between gap-6 py-4">
         <div className="flex min-w-0 items-center gap-4">
           <Link href={getLocalizedPath(locale)} className="flex min-w-0 items-center gap-4">
-            <span className="flex h-12 w-12 items-center justify-center rounded-[18px] border border-[color:var(--border-strong)] bg-[color:var(--surface)] text-sm font-semibold tracking-[0.18em] text-[color:var(--brand-strong)] shadow-[var(--shadow-card)]">
-              IA
-            </span>
+            <Image src="/logo.svg" alt="Interview Atlas" width={48} height={48} className="shrink-0" />
             <div className="min-w-0">
               <p className="truncate text-[15px] font-semibold text-[color:var(--text)]">Interview Atlas</p>
               <p className="truncate text-sm text-[color:var(--text-muted)]">{t(locale, 'brandTagline')}</p>
