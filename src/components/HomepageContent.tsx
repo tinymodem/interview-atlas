@@ -18,13 +18,11 @@ const learningPath = [
 
 function TrackShelf({
   title,
-  body,
   tag,
   tracks,
   cta,
 }: {
   title: string;
-  body: string;
   tag: string;
   tracks: HomepageTrackCard[];
   cta: string;
@@ -35,7 +33,6 @@ function TrackShelf({
         <div>
           <p className="eyebrow">{tag}</p>
           <h2 className="mt-3 text-2xl font-semibold text-[color:var(--text)]">{title}</h2>
-          <p className="mt-3 text-sm leading-7 text-[color:var(--text-muted)]">{body}</p>
         </div>
       </div>
 
@@ -76,7 +73,6 @@ function HotQuestionList({
       <div className="max-w-3xl">
         <p className="eyebrow">{t(locale, 'hotQuestions')}</p>
         <h2 className="mt-4 text-3xl font-semibold text-[color:var(--text)] md:text-4xl">{t(locale, 'hotQuestions')}</h2>
-        <p className="mt-4 text-base leading-8 text-[color:var(--text-light)]">{t(locale, 'hotQuestionsBody')}</p>
       </div>
 
       <div className="mt-8 space-y-4">
@@ -124,14 +120,12 @@ export default function HomepageContent({ locale }: { locale: Locale }) {
       <section className="grid gap-6 xl:grid-cols-2 xl:items-start">
         <TrackShelf
           title={t(locale, 'latestTracks')}
-          body={t(locale, 'latestTracksBody')}
           tag={t(locale, 'latestTrackTag')}
           tracks={latestTracks}
           cta={t(locale, 'openTopic')}
         />
         <TrackShelf
           title={t(locale, 'hotTracks')}
-          body={t(locale, 'hotTracksBody')}
           tag={t(locale, 'hotTrackTag')}
           tracks={hotTracks}
           cta={t(locale, 'openTopic')}
@@ -145,7 +139,6 @@ export default function HomepageContent({ locale }: { locale: Locale }) {
           <div>
             <p className="eyebrow">{t(locale, 'learningPath')}</p>
             <h2 className="mt-4 text-3xl font-semibold text-[color:var(--text)] md:text-4xl">{t(locale, 'platformValueTitle')}</h2>
-            <p className="mt-4 text-base leading-8 text-[color:var(--text-light)]">{t(locale, 'platformValueBody')}</p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <article className="homepage-stat-card rounded-[20px] p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--brand)]">{t(locale, 'statsTracksLabel')}</p>
