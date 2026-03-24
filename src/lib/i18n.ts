@@ -15,17 +15,21 @@ export const uiText = {
     zh: '专题目录',
     en: 'Tracks',
   },
+  primaryNavStart: {
+    zh: '推荐起点',
+    en: 'Start Here',
+  },
   primaryNavMethod: {
     zh: '学习方式',
     en: 'Method',
   },
   homeTitle: {
-    zh: '从基础到工程的题库与笔记',
-    en: 'Interview notes from foundations to production systems',
+    zh: '从模型基础到工程落地的 AI 面试复习地图',
+    en: 'An AI interview study map from model foundations to production systems',
   },
   homeSubtitle: {
-    zh: '先建立结构，再记忆细节。把 AI / LLM 面试题整理成可以持续复习的学习路径。',
-    en: 'Build mental models first, then memorize the details. Interview Atlas organizes AI and LLM questions into a reusable study path.',
+    zh: '先看清结构，再进入细节。把 AI / LLM 面试题整理成可直接开始、可持续复习的学习路径。',
+    en: 'See the structure first, then move into the details. Interview Atlas organizes AI and LLM interviews into a study path you can start using right away.',
   },
   allTracks: {
     zh: '全部方向',
@@ -64,40 +68,40 @@ export const uiText = {
     en: 'Interview Atlas',
   },
   landingTitle: {
-    zh: '把零散的 AI 面试资料，整理成一座能持续扩充的知识地图。',
-    en: 'Turn scattered AI interview material into a study atlas you can keep expanding.',
+    zh: '把零散的 AI 面试资料，整理成一张能马上开始浏览的复习地图。',
+    en: 'Turn scattered AI interview material into a study atlas you can open and use immediately.',
   },
   landingBody: {
-    zh: '用文档化结构整理模型基础、RAG、Agents、评测与工程实践，方便复习、引用和搜索引擎收录。',
-    en: 'Interview Atlas uses a document-first structure for model basics, RAG, agents, evaluation, and engineering practice—built for review, citation, and search indexing.',
+    zh: '围绕模型基础、RAG、Agents、评测与工程实践组织专题、题目和推荐起点，让你更快进入面试状态。',
+    en: 'Interview Atlas organizes model basics, RAG, agents, evaluation, and engineering practice into tracks, questions, and recommended entry points so you can get interview-ready faster.',
   },
   landingKicker: {
     zh: '公开可传播的面试知识地图',
     en: 'A public, document-style interview atlas',
   },
   landingValue1Title: {
-    zh: '按学习路径组织',
-    en: 'Organized as a study path',
+    zh: '先给入口，再给框架',
+    en: 'Start with entry points, not guesswork',
   },
   landingValue1Body: {
-    zh: '不是随机刷题，而是沿着模型基础、检索增强、Agent 与评测逐步推进。',
-    en: 'Move from model foundations to retrieval, agents, evaluation, and shipping instead of hopping between random questions.',
+    zh: '先看到推荐专题和起点问题，再顺着学习路径系统复习，不用在零散资料里自己拼图。',
+    en: 'See recommended tracks and starting questions first, then move through a structured learning path instead of stitching together scattered notes.',
   },
   landingValue2Title: {
-    zh: '适合复习和引用',
-    en: 'Built for review and citation',
+    zh: '适合系统复习',
+    en: 'Built for structured review',
   },
   landingValue2Body: {
-    zh: '每个问题都整理成可连续阅读的文档块，适合考前回顾，也适合长期补充。',
-    en: 'Each question is arranged as a readable document so it works for quick review now and continuous expansion later.',
+    zh: '每道题都用文档化结构整理考察点、答题框架和参考答案，适合考前冲刺，也适合长期积累。',
+    en: 'Each question is structured around what it tests, an answer framework, and a reference answer so it works for both quick review and long-term study.',
   },
   landingValue3Title: {
-    zh: '静态可索引',
-    en: 'Static and searchable',
+    zh: '双语可索引',
+    en: 'Bilingual and indexable',
   },
   landingValue3Body: {
-    zh: '保持静态导出与多语言路由，让内容容易部署、引用和被搜索引擎收录。',
-    en: 'The site keeps static export and multilingual routes so it stays easy to deploy, cite, and index.',
+    zh: '保持静态导出和双语路由，让复习内容更容易部署、传播、引用和被搜索引擎收录。',
+    en: 'Static export and bilingual routes keep the content easy to deploy, share, cite, and search.',
   },
   enterChinese: {
     zh: '进入中文站',
@@ -120,8 +124,8 @@ export const uiText = {
     en: 'The link may have changed, or the page has not been generated yet. Head back to the home page to keep browsing.',
   },
   tracksIntro: {
-    zh: '按角色与专题整理，适合从陌生到熟悉地系统复习。',
-    en: 'Organized by role and topic so you can study from unfamiliar to fluent.',
+    zh: '按岗位与专题整理，适合从陌生到熟悉地系统复习。',
+    en: 'Organized by role and topic so you can move from unfamiliar to fluent.',
   },
   learningPath: {
     zh: '学习路径',
@@ -166,6 +170,102 @@ export const uiText = {
   featureCurated: {
     zh: '持续整理更新',
     en: 'Continuously curated',
+  },
+  homeEyebrow: {
+    zh: 'AI / LLM 面试资料站',
+    en: 'AI / LLM Interview Atlas',
+  },
+  homeHeroBody: {
+    zh: '围绕模型基础、RAG、Agent、评测与工程实践，把题目、答题框架和复习路径整理成可以立即开始浏览的知识地图。',
+    en: 'Cover model foundations, RAG, agents, evaluation, and shipping with questions, answer frameworks, and study paths that are ready to browse immediately.',
+  },
+  homepageOverview: {
+    zh: '内容概览',
+    en: 'Overview',
+  },
+  homepageOverviewBody: {
+    zh: '先看整体规模和阅读方式，再进入适合你的专题和起点问题。',
+    en: 'Understand the scope and reading model first, then jump into the track and starter question that fits you best.',
+  },
+  statsTracksLabel: {
+    zh: '专题方向',
+    en: 'Tracks',
+  },
+  statsQuestionsLabel: {
+    zh: '收录题目',
+    en: 'Questions',
+  },
+  statsBilingualLabel: {
+    zh: '双语阅读',
+    en: 'Bilingual Reading',
+  },
+  statsBilingualValue: {
+    zh: '中英双语',
+    en: 'ZH / EN',
+  },
+  statsIndexableLabel: {
+    zh: '内容形态',
+    en: 'Content Format',
+  },
+  statsIndexableValue: {
+    zh: '静态可索引',
+    en: 'Static and indexable',
+  },
+  startNow: {
+    zh: '开始浏览专题',
+    en: 'Browse Tracks',
+  },
+  seeRecommendedStarts: {
+    zh: '查看推荐起点',
+    en: 'See Recommended Starts',
+  },
+  recommendedStartsTitle: {
+    zh: '推荐起点',
+    en: 'Recommended Starts',
+  },
+  recommendedStartsBody: {
+    zh: '如果你还没决定从哪里开始，先从每条方向最能建立整体感的第一题进入。',
+    en: 'If you are not sure where to begin, start with the first question in each track that builds the clearest mental model.',
+  },
+  featuredTracksBody: {
+    zh: '直接进入你要准备的岗位方向，按专题继续展开。',
+    en: 'Jump straight into the role track you are preparing for and expand from there.',
+  },
+  homepageProofTitle: {
+    zh: '为什么这样更适合准备面试',
+    en: 'Why this works better for interview prep',
+  },
+  homepageProofBody: {
+    zh: '强的面试回答不只是记住概念，而是能把概念、取舍与工程落地连成一条线。首页会先帮你找到入口，再进入结构化复习。',
+    en: 'Strong interview answers connect concepts, trade-offs, and implementation judgment. The homepage should help you find the right entry point first, then move into structured review.',
+  },
+  landingStatsBody: {
+    zh: '用当前已整理的专题、题目和双语阅读能力，快速进入合适的复习入口。',
+    en: 'Use the current tracks, question set, and bilingual reading flow to get into the right study path quickly.',
+  },
+  pickLanguagePrompt: {
+    zh: '选择你要进入的语言站点，并保留同样的学习结构。',
+    en: 'Choose the language you want to study in while keeping the same learning structure.',
+  },
+  recommendedQuestion: {
+    zh: '推荐问题',
+    en: 'Recommended Question',
+  },
+  overviewCardTrackBody: {
+    zh: '按岗位和专题组织，适合快速判断从哪里开始。',
+    en: 'Organized by role and topic so you can quickly decide where to begin.',
+  },
+  overviewCardQuestionBody: {
+    zh: '每道题都围绕面试表达组织，而不是单纯堆题。',
+    en: 'Each question is organized around interview explanations, not just a raw prompt list.',
+  },
+  overviewCardBilingualBody: {
+    zh: '中英文切换时保持同一条学习路径和内容上下文。',
+    en: 'Switch languages without losing the same learning path and content context.',
+  },
+  overviewCardIndexableBody: {
+    zh: '保持静态导出和文档化结构，方便引用、部署和搜索收录。',
+    en: 'Keep the static, document-style structure for citation, deployment, and search indexing.',
   },
   startHere: {
     zh: '推荐从这里开始',

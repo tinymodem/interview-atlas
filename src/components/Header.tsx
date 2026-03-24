@@ -28,6 +28,9 @@ export default function Header({ locale }: { locale: Locale }) {
             <Link href={getLocalizedPath(locale)} className="rounded-full px-4 py-2 font-medium text-[color:var(--text)] transition hover:bg-[color:var(--surface-subtle)]">
               {t(locale, 'primaryNavHome')}
             </Link>
+            <a href="#start-here" className="rounded-full px-4 py-2 font-medium text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-subtle)] hover:text-[color:var(--text)]">
+              {t(locale, 'primaryNavStart')}
+            </a>
             <a href="#tracks" className="rounded-full px-4 py-2 font-medium text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-subtle)] hover:text-[color:var(--text)]">
               {t(locale, 'primaryNavTracks')}
             </a>

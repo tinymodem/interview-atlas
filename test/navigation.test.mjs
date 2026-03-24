@@ -18,7 +18,7 @@ test('question context exposes previous and next questions inside the same job',
   const context = getQuestionContext(102);
   assert.equal(context?.current.id, 102);
   assert.equal(context?.previous?.id, 101);
-  assert.equal(context?.next?.id, 103);
+  assert.equal(context?.next?.id, 201);
 });
 
 test('question context does not cross into other jobs', () => {

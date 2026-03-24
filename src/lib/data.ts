@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { getLocalizedPath, getText } from './localization.ts';
 export { getLocaleLabel, getLocalizedPath, getText } from './localization.ts';
 
 export const locales = ['zh', 'en'] as const;
@@ -63,6 +64,35 @@ export interface QuestionDetail {
   jobSlug: string;
 }
 
+export interface HomepageOverview {
+  trackCount: number;
+  questionCount: number;
+}
+
+export interface HomepageRecommendedStart {
+  slug: string;
+  trackName: string;
+  trackDescription: string | null;
+  questionCount: number;
+  href: string;
+  chapterTitle: string;
+  sectionTitle: string;
+  question: {
+    id: number;
+    title: string;
+    number: string;
+  };
+}
+
+export interface HomepageFeaturedTrack {
+  slug: string;
+  name: string;
+  description: string | null;
+  questionCount: number;
+  href: string;
+  startHere: HomepageRecommendedStart | null;
+}
+
 function readJSON<T>(path: string): T {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
@@ -97,6 +127,59 @@ export function getAllQuestionIds(): number[] {
   } catch {
     return [];
   }
+}
+
+export function getHomepageOverview(): HomepageOverview {
+  return {
+    trackCount: getJobs().length,
+    questionCount: getAllQuestionIds().length,
+  };
+}
+
+export function getHomepageRecommendedStarts(locale: Locale): HomepageRecommendedStart[] {
+  return getJobs()
+    .map((job) => {
+      const detail = getJob(job.slug);
+      if (!detail) return null;
+
+      for (const chapter of detail.chapters) {
+        for (const section of chapter.sections) {
+          const firstQuestion = section.questions[0];
+          if (!firstQuestion) continue;
+
+          return {
+            slug: detail.slug,
+            trackName: getText(detail.name, locale) || detail.slug,
+            trackDescription: getText(detail.description, locale),
+            questionCount: detail.questionCount,
+            href: getLocalizedPath(locale, `/q/${firstQuestion.id}`),
+            chapterTitle: getText(chapter.title, locale) || chapter.number,
+            sectionTitle: getText(section.title, locale) || section.number,
+            question: {
+              id: firstQuestion.id,
+              title: getText(firstQuestion.title, locale) || firstQuestion.number,
+              number: firstQuestion.number,
+            },
+          };
+        }
+      }
+
+      return null;
+    })
+    .filter((item): item is HomepageRecommendedStart => item !== null);
+}
+
+export function getHomepageFeaturedTracks(locale: Locale): HomepageFeaturedTrack[] {
+  const starts = new Map(getHomepageRecommendedStarts(locale).map((item) => [item.slug, item]));
+
+  return getJobs().map((job) => ({
+    slug: job.slug,
+    name: getText(job.name, locale) || job.slug,
+    description: getText(job.description, locale),
+    questionCount: job.questionCount,
+    href: getLocalizedPath(locale, `/jobs/${job.slug}`),
+    startHere: starts.get(job.slug) || null,
+  }));
 }
 
 export function isLocale(value: string): value is Locale {
