@@ -1,3 +1,5 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import HomepageContent from '@/components/HomepageContent';
 import { getCanonicalUrl } from '@/lib/data';
 
@@ -14,5 +16,13 @@ export const metadata = {
 };
 
 export default function LandingPage() {
-  return <HomepageContent locale="en" />;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header locale="en" />
+      <main className="doc-shell flex-1 py-8 md:py-10">
+        <HomepageContent locale="en" />
+      </main>
+      <Footer locale="en" />
+    </div>
+  );
 }
