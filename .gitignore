@@ -43,3 +43,9 @@ node_modules/
 .next/
 *.bat
 *.png
+
+# generated interview data
+src/data/jobs.json
+src/data/question-ids.json
+src/data/jobs/*.json
+src/data/questions/*.json
