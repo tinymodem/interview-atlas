@@ -4,8 +4,8 @@ type LocaleText = Record<Locale, string>;
 
 export const uiText = {
   brandTagline: {
-    zh: '面向 AI 与大模型岗位的双语面试资料站',
-    en: 'A bilingual interview prep library for AI and LLM roles',
+    zh: '面向 AI 与大模型岗位的多语言面试资料站',
+    en: 'A multilingual interview prep library for AI and LLM roles',
   },
   primaryNavHome: {
     zh: '首页',
@@ -96,8 +96,8 @@ export const uiText = {
     en: 'Static and searchable',
   },
   landingValue3Body: {
-    zh: '保持静态导出与双语路由，让内容容易部署、引用和被搜索引擎收录。',
-    en: 'The site keeps static export and bilingual routes so it stays easy to deploy, cite, and index.',
+    zh: '保持静态导出与多语言路由，让内容容易部署、引用和被搜索引擎收录。',
+    en: 'The site keeps static export and multilingual routes so it stays easy to deploy, cite, and index.',
   },
   enterChinese: {
     zh: '进入中文站',
@@ -156,8 +156,8 @@ export const uiText = {
     en: 'Tie offline metrics, online feedback, risk control, and rollout strategy into one loop.',
   },
   featureBilingual: {
-    zh: '中英双语对照',
-    en: 'Bilingual by default',
+    zh: '多语言阅读',
+    en: 'Multilingual by default',
   },
   featureStatic: {
     zh: '静态可索引',

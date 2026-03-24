@@ -37,7 +37,7 @@ const proofPoints = [
 
 export const metadata = {
   title: 'Interview Atlas | 面试资料铺',
-  description: 'Bilingual AI and LLM interview materials, optimized for GitHub Pages and search indexing.',
+  description: 'Multilingual AI and LLM interview materials for model foundations, RAG, agents, evaluation, and shipping.',
   alternates: {
     canonical: getCanonicalUrl('/'),
     languages: {
@@ -54,7 +54,7 @@ export default function LandingPage() {
         <div className="flex items-center justify-between gap-4 border-b border-[color:var(--border)] pb-6">
           <div className="min-w-0">
             <p className="eyebrow">Interview Atlas</p>
-            <p className="mt-2 text-sm text-[color:var(--text-muted)]">A documentation-style interview prep library for AI and LLM roles.</p>
+            <p className="mt-2 text-sm text-[color:var(--text-muted)]">Multilingual interview prep for AI engineers, LLM builders, and product teams.</p>
           </div>
 
           <Link
@@ -70,16 +70,16 @@ export default function LandingPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.6fr)] lg:items-start">
           <div>
             <p className="mt-4 text-sm font-medium uppercase tracking-[0.16em] text-[color:var(--text-muted)]">
-              Public knowledge map for AI interviews
+              Interview questions with better structure and better answers
             </p>
             <h1 className="mt-5 max-w-5xl text-4xl font-semibold leading-[1.02] text-[color:var(--text)] md:text-6xl xl:text-[4.75rem]">
-              Interview prep, organized like product documentation.
+              Prepare for AI and LLM interviews with material worth revisiting.
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-[color:var(--text-light)] md:text-[1.15rem]">
-              Interview Atlas turns scattered questions on LLM systems, RAG, agents, evaluation, and shipping into a structured study surface you can actually revisit.
+              Move beyond scattered notes and repeated LeetCode-style prompts. Interview Atlas organizes model systems, RAG, agents, evaluation, and production trade-offs into study paths that help you explain ideas clearly under interview pressure.
             </p>
             <p className="mt-4 max-w-3xl text-base leading-8 text-[color:var(--text-muted)]">
-              Start in English by default, switch to Chinese from the top-right corner whenever you want the mirrored route and content context.
+              Use it to tighten fundamentals, rehearse system-level explanations, and review the questions that tend to separate surface familiarity from real engineering judgment.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -99,19 +99,19 @@ export default function LandingPage() {
           </div>
 
           <aside className="surface-panel p-6 lg:mt-8">
-            <p className="eyebrow">What You Get</p>
+            <p className="eyebrow">Why People Use It</p>
             <div className="mt-5 space-y-4">
               <div className="rounded-[20px] bg-[color:var(--surface-subtle)] p-4">
-                <p className="text-sm font-semibold text-[color:var(--text)]">Structured reading flow</p>
-                <p className="mt-2 text-sm leading-7 text-[color:var(--text-muted)]">Browse by track, chapter, section, and question without losing the overall map.</p>
+                <p className="text-sm font-semibold text-[color:var(--text)]">Go from fundamentals to real trade-offs</p>
+                <p className="mt-2 text-sm leading-7 text-[color:var(--text-muted)]">Study Transformer basics, retrieval systems, agent orchestration, evaluation, and shipping concerns in one connected flow.</p>
               </div>
               <div className="rounded-[20px] bg-[color:var(--surface-subtle)] p-4">
-                <p className="text-sm font-semibold text-[color:var(--text)]">Reusable answer pages</p>
-                <p className="mt-2 text-sm leading-7 text-[color:var(--text-muted)]">Every question is laid out like a compact doc page with framing, answer body, and pitfalls.</p>
+                <p className="text-sm font-semibold text-[color:var(--text)]">Practice answers that sound senior, not memorized</p>
+                <p className="mt-2 text-sm leading-7 text-[color:var(--text-muted)]">Each page highlights what the interviewer is really testing, how to structure your answer, and where weaker explanations usually fall apart.</p>
               </div>
               <div className="rounded-[20px] bg-[color:var(--surface-subtle)] p-4">
-                <p className="text-sm font-semibold text-[color:var(--text)]">Bilingual route parity</p>
-                <p className="mt-2 text-sm leading-7 text-[color:var(--text-muted)]">Switch languages without being thrown back to the top of the site.</p>
+                <p className="text-sm font-semibold text-[color:var(--text)]">Review in the language you actually interview in</p>
+                <p className="mt-2 text-sm leading-7 text-[color:var(--text-muted)]">Switch between multilingual routes while keeping the same track and question context, so revision stays fast and focused.</p>
               </div>
             </div>
           </aside>
@@ -130,11 +130,10 @@ export default function LandingPage() {
 
       <section className="mt-8 surface-card px-6 py-8 md:px-10">
         <div className="max-w-3xl">
-          <p className="eyebrow">Why This Format</p>
-          <h2 className="mt-4 text-3xl font-semibold text-[color:var(--text)] md:text-4xl">A study site that reads like documentation, not a dashboard.</h2>
+          <p className="eyebrow">What You Can Cover</p>
+          <h2 className="mt-4 text-3xl font-semibold text-[color:var(--text)] md:text-4xl">Build sharper explanations before the interview starts.</h2>
           <p className="mt-4 text-base leading-8 text-[color:var(--text-light)]">
-            Interview prep gets easier when the material has shape. Interview Atlas uses stable routes, structured sections,
-            and readable answer pages so you can move from quick review to deep study without changing tools.
+            The strongest interview answers usually connect concepts, trade-offs, and implementation choices. This atlas is built to help you rehearse those connections across model internals, retrieval pipelines, agent behavior, evaluation strategy, and production constraints.
           </p>
         </div>
 

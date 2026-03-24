@@ -86,6 +86,136 @@
                   "pitfall": {
                     "zh": "只说“缓存更快”但讲不出它为什么更快，也没有提到显存成本。"
                   }
+                },
+                {
+                  "id": 103,
+                  "number": "3",
+                  "title": {
+                    "zh": "RoPE 和绝对位置编码相比，为什么更适合现代大模型？",
+                    "en": "Why is RoPE often a better fit than absolute positional encoding for modern LLMs?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解位置建模、相对位置信息和长上下文外推之间的关系。",
+                    "en": "This checks whether you understand positional modeling, relative position signals, and why extrapolation matters for long-context models."
+                  },
+                  "approach": {
+                    "zh": "先解释绝对位置编码的限制，再讲 RoPE 如何把位置信息融入 attention，并补充它对长上下文的工程意义。",
+                    "en": "Start with the limitations of absolute position encodings, then explain how RoPE injects position into attention and why that matters operationally for long contexts."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n绝对位置编码的问题在于：它把每个位置当成一个固定 id，训练时见过的长度和推理时需要处理的长度之间容易脱节。模型能记住某些位置模式，但不一定能稳定外推到更长上下文。\n\nRoPE 的核心思路是把位置信息以旋转的方式作用到 query 和 key 上，使 attention 分数天然携带相对位置信息。这样模型在比较两个 token 关系时，不只是知道“它们在第几个位置”，还更容易学习“它们相隔多远、方向如何”。\n\n工程上，RoPE 更适合现代大模型，因为它通常比简单绝对位置编码更利于长上下文扩展，也更方便做位置缩放、NTK-aware scaling 等长度扩展技巧。当然它也不是万能的，超长上下文下仍然要面对注意力退化和训练分布外问题。",
+                    "en": "## Reference Answer\n\nA weakness of absolute positional encoding is that it treats each position as a fixed identity. That makes it easy for the model to memorize patterns within the training length, but much harder to generalize cleanly when inference requires much longer contexts.\n\nRoPE works differently: it applies position through a rotation on queries and keys, so the attention score naturally reflects relative positional relationships. Instead of only learning that a token was in slot 128, the model can more directly encode how two tokens are offset from each other.\n\nThat makes RoPE a strong fit for modern LLMs. It tends to behave better when extending context length and works well with practical scaling tricks used in long-context systems. It still does not remove all long-context issues, but it gives a much better foundation than simple absolute position encoding."
+                  },
+                  "pitfall": {
+                    "zh": "只会说“RoPE 支持长上下文”，但讲不清它为什么和 attention 机制更匹配。",
+                    "en": "A weak answer says only that RoPE supports long context without explaining why its relative-position behavior matches attention more naturally."
+                  }
+                },
+                {
+                  "id": 104,
+                  "number": "4",
+                  "title": {
+                    "zh": "预训练、SFT 和 RLHF 在大模型能力形成中分别起什么作用？",
+                    "en": "What roles do pretraining, SFT, and RLHF play in shaping an LLM?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否能区分知识获取、任务对齐和偏好对齐这三层能力来源。",
+                    "en": "This tests whether you can separate knowledge acquisition, task alignment, and preference alignment as different sources of model capability."
+                  },
+                  "approach": {
+                    "zh": "按阶段拆开讲：预训练学世界知识和语言模式，SFT 学任务格式和指令遵循，RLHF 调整回答偏好与行为边界。",
+                    "en": "Explain it in stages: pretraining learns broad language and world structure, SFT teaches task-following behavior, and RLHF adjusts preference and response style."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n可以把这三个阶段理解为三层不同目标。\n\n**预训练**解决的是“模型先学会世界和语言”。它通过海量语料学习统计规律、事实模式和通用表示能力，所以很多基础知识、推理潜力和表达能力主要来自这里。\n\n**SFT** 解决的是“让模型学会按任务要求回答”。它通常用高质量指令数据把模型从“会续写文本”变成“会按要求完成问答、摘要、代码解释等任务”，所以它强化了格式控制、指令遵循和任务边界。\n\n**RLHF** 解决的是“在多个看起来都合理的回答中，更偏向人类喜欢的那一种”。它不一定增加底层知识，但会显著影响回答风格、帮助性、安全性、拒答策略和整体可用性。\n\n面试里可以总结一句：预训练决定上限基础，SFT 决定任务可用性，RLHF 决定交互体验和偏好对齐。",
+                    "en": "## Reference Answer\n\nThese stages optimize different layers of model behavior.\n\n**Pretraining** is where the model absorbs broad language structure, factual patterns, and general representations from large corpora. A large share of the model's raw knowledge and reasoning potential comes from this stage.\n\n**SFT** then teaches the model how to behave as a task-following assistant. Instead of merely continuing text, it learns to answer questions, summarize, explain code, and follow instructions in a predictable format.\n\n**RLHF** is about preference shaping. It helps the model choose among many plausible answers in ways humans tend to prefer, affecting helpfulness, safety behavior, refusal patterns, and response tone more than core factual knowledge.\n\nA concise interview summary is: pretraining builds the foundation, SFT makes the model task-usable, and RLHF makes it interact well with people."
+                  },
+                  "pitfall": {
+                    "zh": "把 RLHF 讲成“让模型学到更多知识”，而没有区分能力来源和行为偏好。",
+                    "en": "A common mistake is describing RLHF as a source of new knowledge instead of a layer that mostly reshapes preference and behavior."
+                  }
+                },
+                {
+                  "id": 105,
+                  "number": "5",
+                  "title": {
+                    "zh": "MoE 模型为什么能在不线性增加推理成本的情况下扩展参数量？",
+                    "en": "Why can MoE models scale parameter count without linearly scaling inference cost?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你对专家路由、激活参数量和训练/推理成本分离的理解。",
+                    "en": "This checks whether you understand expert routing, active parameter count, and the split between total parameters and active compute."
+                  },
+                  "approach": {
+                    "zh": "先解释 dense 模型每层都全量参与，再讲 MoE 每次只激活少量专家，最后补充负载均衡和通信开销。",
+                    "en": "Start with dense models activating everything every step, then explain sparse expert routing and finish with load balancing and communication trade-offs."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n在 dense 模型里，每一层的大部分参数都会参与每次前向计算，所以参数量变大通常就意味着推理 FLOPs 和时延一起上升。\n\nMoE 的关键在于“总参数很多，但每次只激活其中一小部分”。输入 token 先经过路由器，路由器决定它应该送到哪几个 expert。这样模型总参数可以很大，但单个 token 真正走过的参数路径仍然相对稀疏。\n\n所以 MoE 能做到：**提高模型容量，不让每次推理都付出完整 dense 模型的计算成本**。这就是为什么它适合在大规模训练中扩展能力。\n\n不过工程上也有代价，例如 expert 负载不均、跨设备通信、路由不稳定，以及如果路由设计不好会出现某些 expert 过热、某些 expert 学不到东西的问题。",
+                    "en": "## Reference Answer\n\nIn a dense model, most parameters in a layer participate in every forward pass, so increasing parameter count usually increases inference cost more or less directly.\n\nMoE changes that by keeping a large total parameter pool but activating only a small subset of experts for each token. A router decides which experts should process that token, so the model's total capacity can grow while the active compute path stays relatively sparse.\n\nThat is the core scaling benefit: you increase capacity without paying the full dense-model compute cost on every inference step.\n\nThe trade-offs are practical rather than magical. MoE systems have to manage routing quality, expert load balance, cross-device communication, and training stability. If routing is poor, some experts become overloaded while others barely learn anything useful."
+                  },
+                  "pitfall": {
+                    "zh": "只说“MoE 更省算力”，却不解释它省的是激活计算，不是总参数本身没有成本。",
+                    "en": "A weak answer says only that MoE is cheaper without explaining that the savings come from sparse activation, not from total parameters becoming free."
+                  }
+                }
+              ]
+            },
+            {
+              "id": 12,
+              "number": "1.2",
+              "title": {
+                "zh": "推理与系统优化",
+                "en": "Inference and Systems Optimization"
+              },
+              "questions": [
+                {
+                  "id": 106,
+                  "number": "1",
+                  "title": {
+                    "zh": "做大模型线上推理优化时，通常先看哪些瓶颈？",
+                    "en": "When optimizing online LLM inference, which bottlenecks do you usually inspect first?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否能从计算、显存、调度和请求形态四个层面拆解性能问题。",
+                    "en": "This tests whether you can break inference performance down into compute, memory, scheduling, and request-pattern bottlenecks."
+                  },
+                  "approach": {
+                    "zh": "先把问题分成 prefill、decode、显存占用和并发调度，再讲你会如何定位吞吐与时延矛盾。",
+                    "en": "Split the system into prefill, decode, memory footprint, and concurrency scheduling, then explain how you would reason about latency versus throughput."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n做线上推理优化时，我一般先把瓶颈拆成四类。\n\n1. **Prefill 阶段是否过重**：长 prompt 会让首 token 延迟很高，所以要看上下文长度、batch 策略和 prompt 结构。\n2. **Decode 阶段是否受 KV Cache 和显存限制**：生成阶段通常更受 memory bandwidth 和 cache 占用影响。\n3. **并发调度是否合理**：如果 continuous batching、请求排队和优先级策略做得不好，单请求时延和整体吞吐都会受损。\n4. **模型与硬件配置是否匹配**：量化、张量并行、流水线并行和 GPU 利用率都会影响实际效果。\n\n真正的工程优化不是盲目调参数，而是先区分：问题出在首 token、生成阶段、显存占用，还是队列调度。只有定位准确，优化手段才不会互相打架。",
+                    "en": "## Reference Answer\n\nFor online inference, I usually start by separating bottlenecks into four buckets.\n\n1. **Prefill cost**: long prompts can dominate time-to-first-token, so context length, batching strategy, and prompt shape matter immediately.\n2. **Decode bottlenecks**: generation often becomes limited by KV cache pressure and memory bandwidth rather than raw arithmetic throughput.\n3. **Scheduling and concurrency**: poor batching, queueing, or priority policy can damage both latency and aggregate throughput.\n4. **Model-hardware fit**: quantization, tensor parallelism, pipeline strategy, and GPU utilization all affect the final result.\n\nThe main engineering point is to identify whether the pain is coming from prefill, decode, memory footprint, or request scheduling. Without that decomposition, optimization becomes guesswork."
+                  },
+                  "pitfall": {
+                    "zh": "一上来只提量化或换更大 GPU，没有先说明到底是首 token、生成阶段还是调度问题。",
+                    "en": "A common weak answer jumps straight to quantization or bigger GPUs without first identifying whether the issue is prefill, decode, memory, or scheduling."
+                  }
+                },
+                {
+                  "id": 107,
+                  "number": "2",
+                  "title": {
+                    "zh": "为什么 time to first token 和整体吞吐经常需要权衡？",
+                    "en": "Why do time-to-first-token and overall throughput often trade off against each other?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解 batching 对用户体验和资源利用率的双重影响。",
+                    "en": "This checks whether you understand how batching affects both user experience and resource utilization."
+                  },
+                  "approach": {
+                    "zh": "先定义两个指标，再讲 batching 为什么有利于吞吐但会拉高等待，再补充不同业务场景下的取舍。",
+                    "en": "Define the two metrics first, then explain how batching helps throughput but increases waiting, and finish with scenario-dependent trade-offs."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n**Time to first token** 关注的是用户发起请求后多久能看到第一个输出，**吞吐** 关注的是单位时间内系统能处理多少 token 或多少请求。\n\n为了提高吞吐，系统通常会做更积极的 batching，把多个请求攒在一起跑。这样 GPU 利用率会更高，但代价是单个请求可能要等更久才能凑成 batch，首 token 延迟就会上升。\n\n反过来，如果追求极低的首 token 延迟，系统可能更快发车、更少等待，这会降低 batch 效率，导致总体吞吐下降、成本上升。\n\n所以它们常常是一个业务权衡：聊天产品更看重交互响应，离线批处理更看重成本和吞吐，企业级 API 还要在 SLA 和利用率之间找到中间点。",
+                    "en": "## Reference Answer\n\n**Time to first token** measures how quickly a user sees the first output after sending a request. **Throughput** measures how much total work the system can complete per unit time.\n\nTo improve throughput, systems usually batch more aggressively. That raises hardware utilization, but it also means an individual request may wait longer before execution starts, which increases time-to-first-token.\n\nIf you optimize for very low first-token latency, you launch work sooner with less waiting. That improves responsiveness, but it often reduces batch efficiency and therefore lowers overall throughput.\n\nSo the real answer is that these metrics represent a product trade-off. Interactive chat products care more about responsiveness, while offline or high-volume systems may prioritize utilization and cost efficiency."
+                  },
+                  "pitfall": {
+                    "zh": "只会说“要平衡”，但说不出 batching 是如何把两者绑在一起的。",
+                    "en": "A weak answer says only that the system must balance them without explaining how batching creates the trade-off."
+                  }
                 }
               ]
             }
@@ -129,6 +259,136 @@
                   "pitfall": {
                     "zh": "把召回和排序混成同一个概念，或者只讲 embedding 相似度，不讲候选集质量。",
                     "en": "A common issue is collapsing retrieval and reranking into one idea or talking only about embedding similarity without discussing candidate quality."
+                  }
+                },
+                {
+                  "id": 202,
+                  "number": "2",
+                  "title": {
+                    "zh": "RAG 里为什么 chunking 策略会直接影响最终回答质量？",
+                    "en": "Why does chunking strategy directly affect final answer quality in a RAG system?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解 chunk 粒度、语义完整性和上下文噪声之间的关系。",
+                    "en": "This checks whether you understand the relationship between chunk granularity, semantic completeness, and context noise."
+                  },
+                  "approach": {
+                    "zh": "先讲 chunk 太大和太小各自的问题，再补充 overlap、文档结构和检索目标如何影响设计。",
+                    "en": "Explain the failure modes of chunks that are too large or too small, then add how overlap, document structure, and retrieval goals affect the design."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\nChunking 本质上决定了“检索系统能拿来比对的最小知识单元”是什么，所以它会直接影响召回质量和最终注入模型的上下文质量。\n\n如果 chunk 太大，一个片段里会混入太多主题，embedding 容易变得模糊，检索回来后上下文噪声也大。\n\n如果 chunk 太小，又会丢失语义完整性，模型看到的可能只是半句定义或缺失前提的局部结论，导致回答虽然命中了关键词，却缺少真正可用的信息。\n\n好的 chunking 通常会结合文档结构、段落边界、标题层级和必要的 overlap 来设计。面试里可以总结一句：chunking 不是简单切字数，而是在召回精度、语义完整性和上下文成本之间找平衡。",
+                    "en": "## Reference Answer\n\nChunking defines the smallest unit of knowledge your retrieval system can actually compare and return, so it directly affects both retrieval quality and the usefulness of the context sent to the model.\n\nIf chunks are too large, they mix too many topics together. Embeddings become less specific, and retrieved context carries more irrelevant noise.\n\nIf chunks are too small, you lose semantic completeness. The model may receive a fragment that matches the keywords but lacks the surrounding explanation needed to answer well.\n\nGood chunking usually follows document structure, section boundaries, and sometimes overlap between chunks. The concise interview answer is that chunking is a balance between retrieval precision, semantic completeness, and context budget."
+                  },
+                  "pitfall": {
+                    "zh": "把 chunking 讲成单纯的“切 500 个 token”，没有提语义边界和噪声问题。",
+                    "en": "A weak answer treats chunking as just splitting every 500 tokens without discussing semantic boundaries or noise."
+                  }
+                },
+                {
+                  "id": 203,
+                  "number": "3",
+                  "title": {
+                    "zh": "如果 RAG 线上效果不好，你会怎样系统排查是哪里出了问题？",
+                    "en": "If a RAG system performs poorly in production, how would you systematically debug where the failure comes from?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否能把问题拆成数据、检索、排序、上下文组装和生成几个环节。",
+                    "en": "This tests whether you can decompose failures into data, retrieval, reranking, context assembly, and generation stages."
+                  },
+                  "approach": {
+                    "zh": "按链路排查：先确认知识库和 query，再看召回候选、rerank 结果、最终上下文和模型输出。",
+                    "en": "Debug the pipeline stage by stage: verify the corpus and query, inspect retrieved candidates, reranked results, final context, and then the generated answer."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n我一般不会直接说“模型不行”或“embedding 不够强”，而是按链路拆。\n\n1. **数据层**：知识库内容是否完整、更新是否及时、切分是否合理。\n2. **召回层**：正确文档是否进入候选集，如果没有，是 query 表达问题、embedding 问题，还是索引问题。\n3. **排序层**：正确候选是否被压下去了，如果是，就要看 reranker 质量或特征设计。\n4. **上下文组装层**：即使检索正确，最终拼接给模型的上下文是否太长、太乱、顺序不对。\n5. **生成层**：模型是否真正利用了上下文，还是被 prompt、system instruction 或回答风格限制住了。\n\n这样排查的好处是可以快速定位问题到底是“没找对文档”“找到了但没排上来”，还是“文档进来了但模型没用好”。这比笼统地换模型更有效。",
+                    "en": "## Reference Answer\n\nI would not jump straight to saying the model is weak or the embeddings are bad. I would debug the pipeline stage by stage.\n\n1. **Data layer**: is the knowledge base complete, current, and chunked well?\n2. **Retrieval layer**: does the correct document enter the candidate set? If not, is the issue query formulation, embedding quality, or indexing?\n3. **Reranking layer**: if the right evidence is present but not surfaced, reranking may be the issue.\n4. **Context assembly layer**: even with correct evidence, the final packed context may be too noisy, too long, or in the wrong order.\n5. **Generation layer**: the model may still fail to use the context because of prompting, instruction conflicts, or answer-style constraints.\n\nThe point is to identify whether the failure is retrieval miss, ranking miss, context-packing failure, or generation misuse. That is much more actionable than vaguely blaming the model."
+                  },
+                  "pitfall": {
+                    "zh": "一遇到效果差就直接换 embedding 或换模型，没有链路化定位问题。",
+                    "en": "A common mistake is immediately swapping embeddings or models without isolating which stage of the pipeline is actually failing."
+                  }
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "number": "2.2",
+              "title": {
+                "zh": "Agent Systems",
+                "en": "Agent Systems"
+              },
+              "questions": [
+                {
+                  "id": 204,
+                  "number": "1",
+                  "title": {
+                    "zh": "设计 Agent 时，什么时候应该让模型调用工具，而不是直接让它生成答案？",
+                    "en": "When designing an agent, when should the model call a tool instead of answering directly?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解外部工具在准确性、可执行性和状态访问上的价值。",
+                    "en": "This checks whether you understand the value of external tools for accuracy, actionability, and state access."
+                  },
+                  "approach": {
+                    "zh": "先给原则：需要外部事实、实时状态或可执行动作时用工具；纯解释和总结时可直接回答。",
+                    "en": "Start with the principle: use tools when external facts, live state, or real actions are needed; answer directly for purely explanatory tasks."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n判断标准不是“能不能让模型自己猜出来”，而是“这个任务是否依赖模型参数之外的信息或动作”。\n\n如果问题需要**实时数据**、**企业私有数据**、**数据库状态**，或者需要真正执行某个操作，例如查询订单、写入工单、调用 API，那么就应该优先走工具调用。\n\n如果任务只是解释概念、总结已有上下文、改写文字，模型直接回答通常更简单。\n\n所以 Agent 的核心不是让模型多做事，而是让它知道：什么时候靠参数知识足够，什么时候必须把决策和执行交给外部系统。这样才能同时保证正确性和可控性。",
+                    "en": "## Reference Answer\n\nThe decision criterion is not whether the model can guess something plausibly. It is whether the task depends on information or actions outside the model's parameters.\n\nIf the task requires **live data**, **private enterprise state**, **database access**, or an actual side effect such as creating a ticket, calling an API, or checking inventory, tool use is the right path.\n\nIf the task is mostly conceptual explanation, summarization, or rewriting based on already available context, direct model generation is usually enough.\n\nSo the real design principle is: use the model for reasoning and communication, but use tools whenever correctness depends on external state or real execution."
+                  },
+                  "pitfall": {
+                    "zh": "把工具调用讲成“功能更多”，却不提它的本质是访问外部状态和执行真实动作。",
+                    "en": "A weak answer frames tool use as just adding features instead of explaining that it provides access to external state and real execution."
+                  }
+                },
+                {
+                  "id": 205,
+                  "number": "2",
+                  "title": {
+                    "zh": "为什么很多 Agent 失败，不是因为模型不够强，而是因为任务分解和状态管理做得不好？",
+                    "en": "Why do many agents fail because of poor task decomposition and state management rather than weak model capability?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否理解 Agent 失败常来自流程设计，而不是单次生成质量。",
+                    "en": "This tests whether you understand that many agent failures come from workflow design rather than single-turn generation quality."
+                  },
+                  "approach": {
+                    "zh": "先说明 Agent 是多步系统，再讲任务拆分、上下文传递、记忆边界和错误恢复的重要性。",
+                    "en": "Start by framing an agent as a multi-step system, then explain task decomposition, context transfer, memory boundaries, and error recovery."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n很多 Agent 失败，看起来像“模型笨”，其实根因是系统设计问题。Agent 不是单轮问答，而是一个多步决策流程：理解任务、选择工具、执行操作、读取结果、继续规划。\n\n如果任务分解不好，模型会在一步里承担太多目标，导致计划混乱；如果状态管理不好，前一步拿到的信息在后一步丢失或被污染，流程就会逐渐漂移；如果错误恢复机制弱，一次工具失败就可能让整个链路崩掉。\n\n所以很多时候，提升 Agent 的关键不是单纯换更强模型，而是把任务拆得更清楚、状态记录得更稳、失败处理得更明确。模型能力是上限，但系统设计决定下限。",
+                    "en": "## Reference Answer\n\nMany agent failures look like model weakness, but the real cause is often systems design. An agent is not a single response generator. It is a multi-step loop that must understand the task, choose tools, execute actions, read results, and continue planning.\n\nIf task decomposition is poor, each step becomes overloaded and planning gets messy. If state management is weak, information from earlier steps is lost or corrupted. If recovery logic is missing, one failed tool call can collapse the entire workflow.\n\nThat is why improving an agent often means improving decomposition, state tracking, and failure handling rather than simply swapping in a larger model. The model sets the ceiling, but workflow design sets the floor."
+                  },
+                  "pitfall": {
+                    "zh": "一谈 Agent 失败就归咎于模型幻觉，而不讨论流程、状态和恢复机制。",
+                    "en": "A common weak answer blames hallucination alone without discussing workflow structure, state tracking, or recovery behavior."
+                  }
+                },
+                {
+                  "id": 206,
+                  "number": "3",
+                  "title": {
+                    "zh": "做 Agent 评测时，为什么只看最终成功率通常不够？",
+                    "en": "Why is final success rate alone usually insufficient for evaluating an agent?"
+                  },
+                  "examPoint": {
+                    "zh": "考察你是否能把终局结果拆成计划质量、工具正确率、执行步数和恢复能力等维度。",
+                    "en": "This checks whether you can decompose agent evaluation into planning quality, tool correctness, step efficiency, and recovery behavior."
+                  },
+                  "approach": {
+                    "zh": "先承认最终成功率重要，但补充中间过程指标，否则很难知道失败发生在哪一层。",
+                    "en": "Acknowledge that final success matters, then explain why intermediate metrics are needed to identify where failures happen."
+                  },
+                  "answer": {
+                    "zh": "## 参考答案\n\n最终成功率当然重要，因为它代表用户有没有拿到结果。但如果只看这个指标，你往往不知道失败发生在哪一步。\n\nAgent 系统里，失败可能来自：计划错误、工具选错、参数填错、执行超时、状态丢失，或者恢复策略太弱。如果只看终局成功率，所有问题都会被压成一个黑盒数字。\n\n更有用的评测方式通常会加入过程指标，例如工具调用正确率、平均执行步数、是否发生循环、失败后恢复成功率、关键中间状态是否正确。这样你才能知道问题是出在 reasoning、tool use，还是 orchestration。\n\n所以面试里可以说：最终成功率是结果指标，但 Agent 更需要过程指标，否则你无法真正优化系统。",
+                    "en": "## Reference Answer\n\nFinal success rate matters because it tells you whether the user got the desired outcome. But if you stop there, you still do not know where the agent failed.\n\nIn an agent system, failure can come from bad planning, incorrect tool choice, malformed arguments, timeout, lost state, or weak recovery behavior. Looking only at success rate compresses all of those modes into one opaque number.\n\nA stronger evaluation setup adds process metrics such as tool-call accuracy, average steps to completion, loop frequency, recovery success rate, and correctness of key intermediate states. That tells you whether the real issue is reasoning, tool usage, or orchestration.\n\nSo the concise interview answer is: success rate is necessary, but agents need process-level metrics if you want to improve them intelligently."
+                  },
+                  "pitfall": {
+                    "zh": "只会说“要看更多指标”，但说不出 Agent 特有的过程指标是什么。",
+                    "en": "A weak answer says only that more metrics are needed without naming the process-level metrics that are specific to agents."
                   }
                 }
               ]
