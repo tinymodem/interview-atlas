@@ -110,7 +110,7 @@ export default function HomepageContent({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-2 xl:items-start">
+      <section id="tracks" className="grid gap-6 xl:grid-cols-2 xl:items-start">
         <TrackShelf
           title={t(locale, 'latestTracks')}
           tracks={latestTracks}
