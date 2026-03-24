@@ -11,7 +11,7 @@ test('homepage overview reports current track and question totals', () => {
 
   assert.deepEqual(overview, {
     trackCount: 2,
-    questionCount: 4,
+    questionCount: 14,
   });
 });
 
@@ -23,7 +23,7 @@ test('homepage recommended starts exposes localized track entry cards', () => {
     slug: 'llm-engineer',
     trackName: '大模型工程师',
     trackDescription: '聚焦模型原理、推理优化、RAG、Agent 和评测。',
-    questionCount: 3,
+    questionCount: 13,
     href: '/zh/q/101',
     chapterTitle: '模型基础',
     sectionTitle: 'Transformer',

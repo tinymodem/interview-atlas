@@ -19,6 +19,9 @@ export default function Footer({ locale }: { locale: Locale }) {
           <a href="#tracks" className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2 text-sm font-medium text-[color:var(--text)] transition hover:border-[color:var(--brand)] hover:text-[color:var(--brand-strong)]">
             {t(locale, 'primaryNavTracks')}
           </a>
+          <a href="#hot" className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2 text-sm font-medium text-[color:var(--text)] transition hover:border-[color:var(--brand)] hover:text-[color:var(--brand-strong)]">
+            {t(locale, 'primaryNavHot')}
+          </a>
         </div>
       </div>
     </footer>

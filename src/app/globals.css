@@ -91,6 +91,30 @@
       rgba(255, 253, 248, 0.9);
   }
 
+  .homepage-hero {
+    background:
+      linear-gradient(135deg, rgba(39, 86, 163, 0.95), rgba(33, 63, 127, 0.95)),
+      linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(255, 250, 241, 0.95));
+  }
+
+  .homepage-hero .eyebrow,
+  .homepage-hero p,
+  .homepage-hero h1 {
+    color: white;
+  }
+
+  .homepage-list-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(69, 50, 28, 0.1);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .homepage-question-row {
+    background: rgba(255, 253, 248, 0.94);
+    border: 1px solid rgba(69, 50, 28, 0.1);
+    box-shadow: var(--shadow-soft);
+  }
+
   .eyebrow {
     @apply text-xs font-semibold uppercase tracking-[0.22em];
     color: var(--brand);

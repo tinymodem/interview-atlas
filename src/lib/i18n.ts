@@ -15,6 +15,10 @@ export const uiText = {
     zh: '专题目录',
     en: 'Tracks',
   },
+  primaryNavHot: {
+    zh: '热门题目',
+    en: 'Hot Questions',
+  },
   primaryNavStart: {
     zh: '推荐起点',
     en: 'Start Here',
@@ -24,12 +28,12 @@ export const uiText = {
     en: 'Method',
   },
   homeTitle: {
-    zh: '从模型基础到工程落地的 AI 面试复习地图',
-    en: 'An AI interview study map from model foundations to production systems',
+    zh: 'AI / 大模型面试题库与复习入口',
+    en: 'AI / LLM Interview Question Bank and Study Entry',
   },
   homeSubtitle: {
-    zh: '先看清结构，再进入细节。把 AI / LLM 面试题整理成可直接开始、可持续复习的学习路径。',
-    en: 'See the structure first, then move into the details. Interview Atlas organizes AI and LLM interviews into a study path you can start using right away.',
+    zh: '帮助你更快进入 AI / 大模型面试状态，先找到值得看的专题，再进入高频题目。',
+    en: 'Get interview-ready faster for AI and LLM roles by finding the right tracks and high-signal questions first.',
   },
   allTracks: {
     zh: '全部方向',
@@ -176,8 +180,16 @@ export const uiText = {
     en: 'AI / LLM Interview Atlas',
   },
   homeHeroBody: {
-    zh: '围绕模型基础、RAG、Agent、评测与工程实践，把题目、答题框架和复习路径整理成可以立即开始浏览的知识地图。',
-    en: 'Cover model foundations, RAG, agents, evaluation, and shipping with questions, answer frameworks, and study paths that are ready to browse immediately.',
+    zh: '围绕模型基础、RAG、Agent、评测与工程实践整理专题与题目入口，让你先知道看什么，再决定怎么系统复习。',
+    en: 'Explore tracks and question entry points across model basics, RAG, agents, evaluation, and engineering so you know what to review before deciding how deep to study.',
+  },
+  homeHeroKicker: {
+    zh: '专业面试题库网站',
+    en: 'Interview Question Platform',
+  },
+  homeHeroLead: {
+    zh: '让每一次复习都更接近真实面试。',
+    en: 'Make every review session feel closer to the real interview.',
   },
   homepageOverview: {
     zh: '内容概览',
@@ -214,6 +226,58 @@ export const uiText = {
   startNow: {
     zh: '开始浏览专题',
     en: 'Browse Tracks',
+  },
+  latestTracks: {
+    zh: '最新专题',
+    en: 'Latest Tracks',
+  },
+  hotTracks: {
+    zh: '热门专题',
+    en: 'Popular Tracks',
+  },
+  hotQuestions: {
+    zh: '热门题目',
+    en: 'Hot Questions',
+  },
+  latestTracksBody: {
+    zh: '优先查看最近整理和补充过的方向，快速进入当前值得复习的内容。',
+    en: 'Start with recently curated tracks to enter the content that is most worth reviewing now.',
+  },
+  hotTracksBody: {
+    zh: '从访问和复习价值更高的专题开始，更快找到适合你的准备方向。',
+    en: 'Start with higher-signal tracks to quickly find the direction that fits your preparation best.',
+  },
+  hotQuestionsBody: {
+    zh: '直接看高频题目，先建立面试表达，再回到专题里系统展开。',
+    en: 'Jump into high-signal questions first, then return to the full track when you want more structure.',
+  },
+  openTopic: {
+    zh: '进入专题',
+    en: 'Open Track',
+  },
+  openQuestion: {
+    zh: '查看题目',
+    en: 'Open Question',
+  },
+  trackCategory: {
+    zh: '方向分类',
+    en: 'Category',
+  },
+  hotTrackTag: {
+    zh: '热门',
+    en: 'Popular',
+  },
+  latestTrackTag: {
+    zh: '最新',
+    en: 'Latest',
+  },
+  platformValueTitle: {
+    zh: '不只是给题，也给复习顺序',
+    en: 'More than prompts, it gives you a review order',
+  },
+  platformValueBody: {
+    zh: '首页先帮你找到值得进入的专题和高频题目，再用学习路径把零散知识连起来。',
+    en: 'The homepage helps you find the right tracks and high-signal questions first, then uses a study path to connect the scattered knowledge.',
   },
   seeRecommendedStarts: {
     zh: '查看推荐起点',

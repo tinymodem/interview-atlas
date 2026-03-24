@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { homepageContent } from './homepage-data.ts';
 import { getLocalizedPath, getText } from './localization.ts';
 export { getLocaleLabel, getLocalizedPath, getText } from './localization.ts';
 
@@ -93,6 +94,22 @@ export interface HomepageFeaturedTrack {
   startHere: HomepageRecommendedStart | null;
 }
 
+export interface HomepageTrackCard {
+  slug: string;
+  title: string;
+  category: string;
+  summary: string;
+  href: string;
+}
+
+export interface HomepageQuestionCard {
+  id: string;
+  trackTitle: string;
+  category: string;
+  questionTitle: string;
+  href: string;
+}
+
 function readJSON<T>(path: string): T {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
@@ -179,6 +196,36 @@ export function getHomepageFeaturedTracks(locale: Locale): HomepageFeaturedTrack
     questionCount: job.questionCount,
     href: getLocalizedPath(locale, `/jobs/${job.slug}`),
     startHere: starts.get(job.slug) || null,
+  }));
+}
+
+export function getHomepageLatestTracks(locale: Locale): HomepageTrackCard[] {
+  return homepageContent.latestTracks.map((item) => ({
+    slug: item.slug,
+    title: getText(item.title, locale) || item.slug,
+    category: getText(item.category, locale) || '',
+    summary: getText(item.summary, locale) || '',
+    href: getLocalizedPath(locale, `/jobs/${item.slug}`),
+  }));
+}
+
+export function getHomepageHotTracks(locale: Locale): HomepageTrackCard[] {
+  return homepageContent.hotTracks.map((item) => ({
+    slug: item.slug,
+    title: getText(item.title, locale) || item.slug,
+    category: getText(item.category, locale) || '',
+    summary: getText(item.summary, locale) || '',
+    href: getLocalizedPath(locale, `/jobs/${item.slug}`),
+  }));
+}
+
+export function getHomepageHotQuestions(locale: Locale): HomepageQuestionCard[] {
+  return homepageContent.hotQuestions.map((item) => ({
+    id: item.id,
+    trackTitle: getText(item.trackTitle, locale) || '',
+    category: getText(item.category, locale) || '',
+    questionTitle: getText(item.questionTitle, locale) || '',
+    href: item.href[locale],
   }));
 }
 
