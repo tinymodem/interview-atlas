@@ -9,6 +9,7 @@ export default function Header({ locale }: { locale: Locale }) {
   const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
   const pathname = usePathname() || getLocalizedPath(locale);
   const languageHref = getLocaleSwitchPath(otherLocale, pathname);
+  const languageLabel = locale === 'zh' ? '中文' : 'English';
 
   return (
     <header className="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[rgba(248,245,238,0.88)] backdrop-blur-xl">
@@ -41,17 +42,15 @@ export default function Header({ locale }: { locale: Locale }) {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden text-right lg:block">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--brand)]">{t(locale, 'switchLanguage')}</p>
-            <p className="text-xs text-[color:var(--text-muted)]">{t(locale, 'languagePreserved')}</p>
-          </div>
           <Link
             href={languageHref}
-            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-[color:var(--surface)] px-4 py-2 text-sm font-medium text-[color:var(--text)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:border-[color:var(--brand)] hover:text-[color:var(--brand-strong)]"
+            aria-label={locale === 'zh' ? '切换语言' : 'Change language'}
+            className="inline-flex h-8 min-w-[4rem] max-w-full items-center gap-2 overflow-hidden rounded-md border border-transparent px-2.5 py-1 text-xs font-medium text-[color:var(--text-muted)] transition duration-300 ease-[cubic-bezier(0.165,0.85,0.45,1)] hover:bg-[color:var(--surface)] hover:text-[color:var(--text)]"
           >
-            <span>{otherLocale === 'zh' ? '中文' : 'English'}</span>
-            <span className="text-[color:var(--text-muted)]">/</span>
-            <span className="text-[color:var(--text-muted)]">{t(locale, 'switchLanguage')}</span>
+            <span className="truncate">{languageLabel}</span>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="shrink-0">
+              <path d="M16.134 6.16a.5.5 0 1 1 .732.68l-6.5 7-.077.068a.5.5 0 0 1-.655-.068l-6.5-7-.062-.08a.5.5 0 0 1 .718-.667l.076.067L10 12.767z" />
+            </svg>
           </Link>
         </div>
       </div>

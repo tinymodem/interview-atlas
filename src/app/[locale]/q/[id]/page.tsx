@@ -156,11 +156,6 @@ export default async function QuestionPage({ params }: { params: Promise<{ local
             <p className="mt-3 text-sm leading-7 text-[color:var(--text-muted)]">{t(locale, 'readingTipsBody')}</p>
           </section>
 
-          <section className="surface-panel p-5">
-            <p className="eyebrow">{t(locale, 'switchLanguage')}</p>
-            <p className="mt-3 text-sm leading-7 text-[color:var(--text-muted)]">{t(locale, 'languagePreserved')}</p>
-          </section>
-
           {(context?.previous || context?.next) && (
             <section className="surface-card p-5">
               <p className="eyebrow">{t(locale, 'readingMode')}</p>

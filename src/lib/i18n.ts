@@ -4,8 +4,8 @@ type LocaleText = Record<Locale, string>;
 
 export const uiText = {
   brandTagline: {
-    zh: '面向 AI 与大模型岗位的多语言面试资料站',
-    en: 'A multilingual interview prep library for AI and LLM roles',
+    zh: '面向 AI 与大模型岗位的面试资料站',
+    en: 'Interview prep notes and question sets for AI and LLM roles',
   },
   primaryNavHome: {
     zh: '首页',
@@ -100,12 +100,12 @@ export const uiText = {
     en: 'Each question is structured around what it tests, an answer framework, and a reference answer so it works for both quick review and long-term study.',
   },
   landingValue3Title: {
-    zh: '双语可索引',
-    en: 'Bilingual and indexable',
+    zh: '便于查找与引用',
+    en: 'Easy to share and revisit',
   },
   landingValue3Body: {
-    zh: '保持静态导出和双语路由，让复习内容更容易部署、传播、引用和被搜索引擎收录。',
-    en: 'Static export and bilingual routes keep the content easy to deploy, share, cite, and search.',
+    zh: '保持静态导出和文档化组织，让复习内容更容易传播、引用和持续整理。',
+    en: 'A static, document-style structure keeps the material easy to share, revisit, and keep organized.',
   },
   enterChinese: {
     zh: '进入中文站',
@@ -304,8 +304,8 @@ export const uiText = {
     en: 'Strong interview answers connect concepts, trade-offs, and implementation judgment. The homepage should help you find the right entry point first, then move into structured review.',
   },
   landingStatsBody: {
-    zh: '用当前已整理的专题、题目和双语阅读能力，快速进入合适的复习入口。',
-    en: 'Use the current tracks, question set, and bilingual reading flow to get into the right study path quickly.',
+    zh: '用当前已整理的专题和题目，快速进入适合自己的复习入口。',
+    en: 'Use the current tracks and question set to get into the right study path quickly.',
   },
   pickLanguagePrompt: {
     zh: '选择你要进入的语言站点，并保留同样的学习结构。',
@@ -324,8 +324,8 @@ export const uiText = {
     en: 'Each question is organized around interview explanations, not just a raw prompt list.',
   },
   overviewCardBilingualBody: {
-    zh: '中英文切换时保持同一条学习路径和内容上下文。',
-    en: 'Switch languages without losing the same learning path and content context.',
+    zh: '同一套内容结构，方便按自己的阅读习惯进入复习。',
+    en: 'The same content structure makes it easy to review in the reading flow that suits you.',
   },
   overviewCardIndexableBody: {
     zh: '保持静态导出和文档化结构，方便引用、部署和搜索收录。',
@@ -366,10 +366,6 @@ export const uiText = {
   nextQuestion: {
     zh: '下一题',
     en: 'Next',
-  },
-  switchLanguage: {
-    zh: '切换语言',
-    en: 'Switch Language',
   },
   sectionNavigation: {
     zh: '章节导航',
@@ -430,10 +426,6 @@ export const uiText = {
   readingTipsBody: {
     zh: '先读考察要点与摘要，再进入参考答案，最后用误区检查自己的表达是否完整。',
     en: 'Read the summary and what-this-tests block first, move through the answer body, and finish by checking the pitfalls against your own explanation.',
-  },
-  languagePreserved: {
-    zh: '切换语言会保留当前页面',
-    en: 'Language switching keeps this page context',
   },
 } satisfies Record<string, LocaleText>;
 
