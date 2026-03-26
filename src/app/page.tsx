@@ -4,25 +4,21 @@ import HomepageContent from '@/components/HomepageContent';
 import { getCanonicalUrl } from '@/lib/data';
 
 export const metadata = {
-  title: 'Interview Atlas | 面试资料铺',
-  description: 'Multilingual AI and LLM interview materials for model foundations, RAG, agents, evaluation, and shipping.',
+  title: '面试资料铺 | Interview Atlas',
+  description: '系统整理 AI、大模型、RAG、Agent 与推理部署相关面试题，帮助你更快进入状态。',
   alternates: {
     canonical: getCanonicalUrl('/'),
-    languages: {
-      'zh-CN': getCanonicalUrl('/zh'),
-      en: getCanonicalUrl('/en'),
-    },
   },
 };
 
 export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header locale="en" />
+      <Header locale="zh" />
       <main className="doc-shell flex-1 py-8 md:py-10">
-        <HomepageContent locale="en" />
+        <HomepageContent locale="zh" />
       </main>
-      <Footer locale="en" />
+      <Footer locale="zh" />
     </div>
   );
 }

@@ -2,15 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getLocalizedPath, getText } from '../src/lib/localization.ts';
 
-test('localized paths are prefixed with locale segments', () => {
-  assert.equal(getLocalizedPath('zh'), '/zh');
-  assert.equal(getLocalizedPath('en', '/jobs/llm-engineer'), '/en/jobs/llm-engineer');
+test('localized paths resolve to the chinese-only public routes', () => {
+  assert.equal(getLocalizedPath('zh'), '/');
+  assert.equal(getLocalizedPath('zh', '/jobs/llm-engineer'), '/jobs/llm-engineer');
+  assert.equal(getLocalizedPath('zh', '/q/101'), '/q/101');
 });
 
-test('locale guard accepts only supported locales', () => {
-  assert.equal(['/zh', '/en'].includes(getLocalizedPath('zh')), true);
-  assert.equal(['/zh', '/en'].includes(getLocalizedPath('en')), true);
-  assert.equal(['/zh', '/en'].includes('/fr'), false);
+test('public route helper no longer emits english locale entry paths', () => {
+  assert.equal(getLocalizedPath('zh').startsWith('/en'), false);
+  assert.equal(getLocalizedPath('zh', '/jobs/llm-engineer').startsWith('/zh/'), false);
+  assert.equal(getLocalizedPath('zh', '/jobs/llm-engineer').startsWith('/en/'), false);
 });
 
 test('localized text falls back to chinese when english is empty', () => {

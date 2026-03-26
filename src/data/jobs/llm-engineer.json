@@ -8,7 +8,7 @@
     "zh": "聚焦模型原理、推理优化、RAG、Agent 和评测。",
     "en": "Focused on model foundations, inference, RAG, agents, and evaluation."
   },
-  "questionCount": 3,
+  "questionCount": 13,
   "chapters": [
     {
       "id": 1,
@@ -41,6 +41,56 @@
                 "zh": "为什么大模型推理会受 KV Cache 影响很大？",
                 "en": "Why does KV cache have such a large impact on LLM inference?"
               }
+            },
+            {
+              "id": 103,
+              "number": "3",
+              "title": {
+                "zh": "RoPE 和绝对位置编码相比，为什么更适合现代大模型？",
+                "en": "Why is RoPE often a better fit than absolute positional encoding for modern LLMs?"
+              }
+            },
+            {
+              "id": 104,
+              "number": "4",
+              "title": {
+                "zh": "预训练、SFT 和 RLHF 在大模型能力形成中分别起什么作用？",
+                "en": "What roles do pretraining, SFT, and RLHF play in shaping an LLM?"
+              }
+            },
+            {
+              "id": 105,
+              "number": "5",
+              "title": {
+                "zh": "MoE 模型为什么能在不线性增加推理成本的情况下扩展参数量？",
+                "en": "Why can MoE models scale parameter count without linearly scaling inference cost?"
+              }
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "number": "1.2",
+          "title": {
+            "zh": "推理与系统优化",
+            "en": "Inference and Systems Optimization"
+          },
+          "questions": [
+            {
+              "id": 106,
+              "number": "1",
+              "title": {
+                "zh": "做大模型线上推理优化时，通常先看哪些瓶颈？",
+                "en": "When optimizing online LLM inference, which bottlenecks do you usually inspect first?"
+              }
+            },
+            {
+              "id": 107,
+              "number": "2",
+              "title": {
+                "zh": "为什么 time to first token 和整体吞吐经常需要权衡？",
+                "en": "Why do time-to-first-token and overall throughput often trade off against each other?"
+              }
             }
           ]
         }
@@ -68,6 +118,56 @@
               "title": {
                 "zh": "RAG 项目中召回和排序分别解决什么问题？",
                 "en": "What problems do retrieval and reranking solve in a RAG pipeline?"
+              }
+            },
+            {
+              "id": 202,
+              "number": "2",
+              "title": {
+                "zh": "RAG 里为什么 chunking 策略会直接影响最终回答质量？",
+                "en": "Why does chunking strategy directly affect final answer quality in a RAG system?"
+              }
+            },
+            {
+              "id": 203,
+              "number": "3",
+              "title": {
+                "zh": "如果 RAG 线上效果不好，你会怎样系统排查是哪里出了问题？",
+                "en": "If a RAG system performs poorly in production, how would you systematically debug where the failure comes from?"
+              }
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "number": "2.2",
+          "title": {
+            "zh": "Agent Systems",
+            "en": "Agent Systems"
+          },
+          "questions": [
+            {
+              "id": 204,
+              "number": "1",
+              "title": {
+                "zh": "设计 Agent 时，什么时候应该让模型调用工具，而不是直接让它生成答案？",
+                "en": "When designing an agent, when should the model call a tool instead of answering directly?"
+              }
+            },
+            {
+              "id": 205,
+              "number": "2",
+              "title": {
+                "zh": "为什么很多 Agent 失败，不是因为模型不够强，而是因为任务分解和状态管理做得不好？",
+                "en": "Why do many agents fail because of poor task decomposition and state management rather than weak model capability?"
+              }
+            },
+            {
+              "id": 206,
+              "number": "3",
+              "title": {
+                "zh": "做 Agent 评测时，为什么只看最终成功率通常不够？",
+                "en": "Why is final success rate alone usually insufficient for evaluating an agent?"
               }
             }
           ]

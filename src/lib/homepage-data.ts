@@ -12,10 +12,7 @@ export interface HomepageQuestionCardSource {
   trackTitle: LocalizedText;
   category: LocalizedText;
   questionTitle: LocalizedText;
-  href: {
-    zh: string;
-    en: string;
-  };
+  href: string;
 }
 
 export const homepageContent = {
@@ -86,7 +83,7 @@ export const homepageContent = {
         zh: 'Transformer 的核心组件有哪些？面试时应该怎么讲清楚？',
         en: 'What are the core components of a Transformer, and how should you explain them clearly?',
       },
-      href: { zh: '/zh/q/101', en: '/en/q/101' },
+      href: '/q/101',
     },
     {
       id: 'hot-2',
@@ -96,7 +93,7 @@ export const homepageContent = {
         zh: 'RAG 项目中召回和排序分别解决什么问题？',
         en: 'What problems do retrieval and reranking solve in a RAG pipeline?',
       },
-      href: { zh: '/zh/q/201', en: '/en/q/201' },
+      href: '/q/201',
     },
     {
       id: 'hot-3',
@@ -106,7 +103,7 @@ export const homepageContent = {
         zh: '设计 AI 产品评测体系时，为什么不能只看准确率？',
         en: 'Why is accuracy alone not enough when designing an AI product evaluation framework?',
       },
-      href: { zh: '/zh/q/301', en: '/en/q/301' },
+      href: '/q/301',
     },
     {
       id: 'hot-4',
@@ -116,7 +113,7 @@ export const homepageContent = {
         zh: '上线前如何评估延迟、吞吐与成本之间的平衡？',
         en: 'How do you evaluate the trade-off between latency, throughput, and cost before launch?',
       },
-      href: { zh: '/zh/jobs/llm-engineer', en: '/en/jobs/llm-engineer' },
+      href: '/jobs/llm-engineer',
     },
   ] satisfies HomepageQuestionCardSource[],
 };

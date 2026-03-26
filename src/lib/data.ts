@@ -5,7 +5,7 @@ import { homepageContent } from './homepage-data.ts';
 import { getLocalizedPath, getText } from './localization.ts';
 export { getLocaleLabel, getLocalizedPath, getText } from './localization.ts';
 
-export const locales = ['zh', 'en'] as const;
+export const locales = ['zh'] as const;
 export type Locale = (typeof locales)[number];
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
@@ -225,7 +225,7 @@ export function getHomepageHotQuestions(locale: Locale): HomepageQuestionCard[] 
     trackTitle: getText(item.trackTitle, locale) || '',
     category: getText(item.category, locale) || '',
     questionTitle: getText(item.questionTitle, locale) || '',
-    href: item.href[locale],
+    href: item.href,
   }));
 }
 

@@ -2,19 +2,18 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 import ChapterTree from '@/components/ChapterTree';
-import { getCanonicalUrl, getJob, getJobs, getLocalizedPath, getText, type Locale } from '@/lib/data';
+import { getCanonicalUrl, getJob, getJobs, getLocalizedPath, getText } from '@/lib/data';
 import { t } from '@/lib/i18n';
 import { getJobStartHere } from '@/lib/navigation';
 
+const locale = 'zh';
+
 export async function generateStaticParams() {
-  return getJobs().flatMap((job) => [
-    { locale: 'zh', slug: job.slug },
-    { locale: 'en', slug: job.slug },
-  ]);
+  return getJobs().map((job) => ({ slug: job.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale; slug: string }> }) {
-  const { locale, slug } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const job = getJob(decodeURIComponent(slug));
   if (!job) return {};
 
@@ -25,17 +24,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     title,
     description,
     alternates: {
-      canonical: getCanonicalUrl(`/${locale}/jobs/${job.slug}`),
-      languages: {
-        'zh-CN': getCanonicalUrl(`/zh/jobs/${job.slug}`),
-        en: getCanonicalUrl(`/en/jobs/${job.slug}`),
-      },
+      canonical: getCanonicalUrl(`/jobs/${job.slug}`),
     },
   };
 }
 
-export default async function JobPage({ params }: { params: Promise<{ locale: Locale; slug: string }> }) {
-  const { locale, slug } = await params;
+export default async function JobPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const job = getJob(decodeURIComponent(slug));
   if (!job) notFound();
 

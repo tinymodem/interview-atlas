@@ -24,7 +24,7 @@ test('homepage recommended starts exposes localized track entry cards', () => {
     trackName: '大模型工程师',
     trackDescription: '聚焦模型原理、推理优化、RAG、Agent 和评测。',
     questionCount: 13,
-    href: '/zh/q/101',
+    href: '/q/101',
     chapterTitle: '模型基础',
     sectionTitle: 'Transformer',
     question: {
@@ -35,10 +35,10 @@ test('homepage recommended starts exposes localized track entry cards', () => {
   });
 });
 
-test('homepage featured tracks safely degrade when a track has no recommended start', () => {
-  const featured = getHomepageFeaturedTracks('en');
+test('homepage featured tracks expose chinese public routes', () => {
+  const featured = getHomepageFeaturedTracks('zh');
   const trackWithoutStart = featured.find((track) => track.slug === 'ai-product-manager');
 
   assert.equal(trackWithoutStart?.startHere?.question.id, 301);
-  assert.equal(trackWithoutStart?.href, '/en/jobs/ai-product-manager');
+  assert.equal(trackWithoutStart?.href, '/jobs/ai-product-manager');
 });

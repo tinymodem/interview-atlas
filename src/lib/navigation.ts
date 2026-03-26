@@ -42,7 +42,7 @@ export interface JobStartHereData {
   };
 }
 
-function getOrderedQuestions() {
+function getOrderedQuestions(locale: Locale) {
   const ordered = [] as Array<{ id: number; title: string; jobSlug: string }>;
 
   for (const job of getJobs()) {
@@ -54,7 +54,7 @@ function getOrderedQuestions() {
         for (const question of section.questions) {
           ordered.push({
             id: question.id,
-            title: question.title.zh || question.title.en,
+            title: getText(question.title, locale) || question.number,
             jobSlug: detail.slug,
           });
         }
@@ -65,11 +65,11 @@ function getOrderedQuestions() {
   return ordered;
 }
 
-export function getQuestionContext(questionId: number): QuestionContextData | null {
+export function getQuestionContext(questionId: number, locale: Locale): QuestionContextData | null {
   const currentQuestion = getQuestion(questionId);
   if (!currentQuestion) return null;
 
-  const ordered = getOrderedQuestions().filter((question) => question.jobSlug === currentQuestion.jobSlug);
+  const ordered = getOrderedQuestions(locale).filter((question) => question.jobSlug === currentQuestion.jobSlug);
   const index = ordered.findIndex((question) => question.id === questionId);
   if (index === -1) return null;
 

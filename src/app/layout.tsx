@@ -3,8 +3,8 @@ import '@/app/globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tinymodem.github.io/interview-atlas'),
-  title: 'Interview Atlas',
-  description: 'A multilingual AI and LLM interview prep site built for GitHub Pages and search indexing.',
+  title: '面试资料铺 | Interview Atlas',
+  description: '系统整理 AI、大模型、RAG、Agent 与推理部署相关面试题，帮助你更快进入状态。',
   verification: {
     google: 'rb_fPq29dsj5PkrRODAUrz9liBldllmvXjjNnogLGBE',
     other: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <body>{children}</body>
     </html>
   );

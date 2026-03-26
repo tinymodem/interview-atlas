@@ -7,20 +7,18 @@ import {
   getLocalizedPath,
   getQuestion,
   getText,
-  type Locale,
 } from '@/lib/data';
 import { t } from '@/lib/i18n';
 import { getQuestionContext, getQuestionSidebar, getQuestionSummary } from '@/lib/navigation';
 
+const locale = 'zh';
+
 export async function generateStaticParams() {
-  return getAllQuestionIds().flatMap((id) => [
-    { locale: 'zh', id: String(id) },
-    { locale: 'en', id: String(id) },
-  ]);
+  return getAllQuestionIds().map((id) => ({ id: String(id) }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale; id: string }> }) {
-  const { locale, id } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const question = getQuestion(Number(id));
   if (!question) return {};
 
@@ -31,22 +29,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     title,
     description,
     alternates: {
-      canonical: getCanonicalUrl(`/${locale}/q/${id}`),
-      languages: {
-        'zh-CN': getCanonicalUrl(`/zh/q/${id}`),
-        en: getCanonicalUrl(`/en/q/${id}`),
-      },
+      canonical: getCanonicalUrl(`/q/${id}`),
     },
   };
 }
 
-export default async function QuestionPage({ params }: { params: Promise<{ locale: Locale; id: string }> }) {
-  const { locale, id } = await params;
+export default async function QuestionPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const question = getQuestion(Number(id));
   if (!question) notFound();
 
   const sidebar = getQuestionSidebar(question.jobSlug, question.id, locale);
-  const context = getQuestionContext(question.id);
+  const context = getQuestionContext(question.id, locale);
   const answerHtml = getText(question.answerHtml, locale);
   const pitfallHtml = getText(question.pitfallHtml, locale);
   const summary = getQuestionSummary(question.id, locale) || t(locale, 'summaryFallback');

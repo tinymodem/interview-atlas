@@ -4,10 +4,10 @@ import { readFileSync } from 'node:fs';
 
 const rootPageSource = readFileSync(new URL('../src/app/page.tsx', import.meta.url), 'utf8');
 
-test('root homepage renders the english homepage shell', () => {
+test('root homepage renders the chinese homepage shell', () => {
   assert.match(rootPageSource, /import Header from '@\/components\/Header';/);
   assert.match(rootPageSource, /import Footer from '@\/components\/Footer';/);
-  assert.match(rootPageSource, /<Header locale="en" \/>/);
-  assert.match(rootPageSource, /<HomepageContent locale="en" \/>/);
-  assert.match(rootPageSource, /<Footer locale="en" \/>/);
+  assert.match(rootPageSource, /<Header locale="zh" \/>/);
+  assert.match(rootPageSource, /<HomepageContent locale="zh" \/>/);
+  assert.match(rootPageSource, /<Footer locale="zh" \/>/);
 });
