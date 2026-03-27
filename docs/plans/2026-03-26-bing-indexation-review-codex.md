@@ -2,12 +2,12 @@ Verdict: APPROVED
 
 Blocking issues
 
-- None after the Chinese-only simplification. Fresh verification shows the exported site no longer contains /zh/* or /en/* routes, and the public route family is internally consistent.
+- None. The legacy /zh compatibility layer now preserves the GitHub Pages basePath when stripping /zh, so stale Bing results no longer need to land on a 404 or jump outside the deployed site.
 
 Non-blocking suggestions
 
-- The older checklist and investigation note still contain bilingual assumptions. Keep them for historical context, but treat the Chinese-only route strategy as the active decision record.
-- After deployment, re-run Bing URL Inspection on /, one job page, and one question page, then give Bing time to recrawl before judging the fix.
+- Keep sitemap.xml limited to the root Chinese route family. The /zh compatibility pages should stay discoverable only through stale external links, not through first-party crawl hints.
+- After deployment, re-run Bing URL Inspection on one stale /zh URL and confirm Bing sees the canonical root URL plus the noindex directive on the compatibility page.
 
 Next owner: Claude
 
@@ -15,30 +15,18 @@ Next owner: Claude
 
 ### Fresh verification
 
-- npm test passed: 22 tests, 22 pass, 0 fail.
-- npm run build passed and exported only these app routes: /, /jobs/[slug], /q/[id], /robots.txt, /sitemap.xml.
+- node --test --test-concurrency=1 test/legacy-zh-routes.test.mjs passed: 5 tests, 5 pass, 0 fail.
+- npm test passed: 26 tests, 26 pass, 0 fail.
+- npm run build passed and exported the root route family plus legacy /zh compatibility pages.
 
-### Exported output checks
+### Compatibility-page checks
 
-- find out -maxdepth 3 -type f | sort shows no out/zh/ and no out/en/.
-- out/index.html contains <html lang="zh-CN"> and canonical https://tinymodem.github.io/interview-atlas/.
-- out/q/201/index.html contains <html lang="zh-CN"> and canonical https://tinymodem.github.io/interview-atlas/q/201/.
-- out/jobs/llm-engineer/index.html contains <html lang="zh-CN"> and canonical https://tinymodem.github.io/interview-atlas/jobs/llm-engineer/.
-- out/sitemap.xml lists only /, /jobs/..., and /q/... URLs.
-- out/robots.txt allows crawling and points to the root sitemap URL.
+- out/zh/index.html contains meta robots noindex, follow and canonical https://tinymodem.github.io/interview-atlas/.
+- out/zh/jobs/llm-engineer/index.html contains noindex, follow and canonical https://tinymodem.github.io/interview-atlas/jobs/llm-engineer/.
+- out/zh/q/201/index.html contains noindex, follow and canonical https://tinymodem.github.io/interview-atlas/q/201/.
+- The redirect helper now maps /interview-atlas/zh/... to /interview-atlas/..., preventing the GitHub Pages basePath from being dropped during client-side redirect.
 
-### Residual search checks
+### Crawl-signal checks
 
-- Searching exported output and source for /zh/ or /en/ finds only historical investigation text and regression assertions, not active public routes.
-- Searching representative HTML for hreflang and alternate-language output found no alternate locale links in the exported pages.
-
-## Checklist comparison
-
-The original fix checklist was written for a bilingual architecture. Under the approved Chinese-only strategy:
-
-- locale-specific lang repair is superseded by making the whole public site zh-CN
-- mixed-language English page repair is superseded by removing English public pages
-- duplicate homepage strategy is resolved by making / the only homepage
-- base-path ambiguity from locale route generation is resolved by removing locale-prefixed public routes and emitting only root public paths
-- metadata revalidation is complete for the representative exported pages checked above
-- regression coverage exists in the updated test suite for root homepage, root content routes, localization helpers, navigation, and sitemap-facing route expectations
+- src/app/sitemap.ts still emits only /, /jobs/*, and /q/* root URLs.
+- Legacy /zh pages are compatibility-only: they do not advertise themselves as canonical, and they remain excluded from indexation through metadata.
