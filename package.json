@@ -9,22 +9,24 @@
     "start": "next start",
     "build-data": "node scripts/build-data.mjs",
     "test": "node --test --test-concurrency=1",
-    "preview": "python3 -m http.server 4173 --directory out"
+    "preview": "python3 -m http.server 4173 --directory out",
+    "test:browser": "node --test --test-concurrency=1 test/browser/legacy-zh-browser.test.mjs"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.0",
+    "marked": "^15.0.0",
     "next": "^15.1.0",
+    "postcss": "^8.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "marked": "^15.0.0",
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0"
+    "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.7.0",
-    "better-sqlite3": "^11.0.0"
+    "better-sqlite3": "^11.0.0",
+    "playwright": "^1.58.2",
+    "typescript": "^5.7.0"
   }
 }
