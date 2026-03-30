@@ -26,9 +26,9 @@ test('legacy zh job routes point to root job routes and stay out of the index', 
 });
 
 test('legacy zh question routes point to root question routes and stay out of the index', () => {
-  assert.match(zhQuestionSource, /canonical: getCanonicalUrl\(`\/q\/\$\{id\}`\)/);
+  assert.match(zhQuestionSource, /canonical: getCanonicalUrl\(getQuestionPathById\(Number\(id\)\)\)/);
   assert.match(zhQuestionSource, /index: false/);
-  assert.match(zhQuestionSource, /LegacyZhRedirect target=\{`\/q\/\$\{id\}`\}/);
+  assert.match(zhQuestionSource, /LegacyZhRedirect target=\{getQuestionPathById\(Number\(id\)\)\}/);
 });
 
 test('legacy zh redirect preserves the GitHub Pages basePath when stripping /zh', () => {

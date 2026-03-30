@@ -11,3 +11,9 @@ test('root homepage renders the chinese homepage shell', () => {
   assert.match(rootPageSource, /<HomepageContent locale="zh" \/>/);
   assert.match(rootPageSource, /<Footer locale="zh" \/>/);
 });
+
+test('root homepage sources topic hub navigation', () => {
+  const homepageContentSource = readFileSync(new URL('../src/components/HomepageContent.tsx', import.meta.url), 'utf8');
+
+  assert.match(homepageContentSource, /topics/);
+});

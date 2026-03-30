@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getLocalizedPath } from '../src/lib/localization.ts';
+import { getQuestionPathById } from '../src/lib/seo.ts';
 import {
   getJobStartHere,
   getQuestionContext,
@@ -15,7 +16,7 @@ test('question sidebar emits chinese-only public routes', () => {
   assert.equal(
     sidebar.sections.some((section) =>
       section.questions.some(
-        (question) => question.active && question.href === getLocalizedPath('zh', '/q/201')
+        (question) => question.active && question.href === getLocalizedPath('zh', getQuestionPathById(201))
       )
     ),
     true
@@ -41,5 +42,5 @@ test('job start helper exposes the recommended first question and labels', () =>
   assert.equal(startHere?.question.id, 101);
   assert.equal(startHere?.chapterTitle, '模型基础');
   assert.equal(startHere?.sectionTitle, 'Transformer');
-  assert.equal(startHere?.href, getLocalizedPath('zh', '/q/101'));
+  assert.equal(startHere?.href, getLocalizedPath('zh', getQuestionPathById(101)));
 });

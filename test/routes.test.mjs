@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getLocalizedPath, getText } from '../src/lib/localization.ts';
+import { getQuestionPathById, getQuestionSlug } from '../src/lib/seo.ts';
 
 test('localized paths resolve to the chinese-only public routes', () => {
   assert.equal(getLocalizedPath('zh'), '/');
@@ -16,4 +17,9 @@ test('public route helper no longer emits english locale entry paths', () => {
 
 test('localized text falls back to chinese when english is empty', () => {
   assert.equal(getText({ zh: '中文内容', en: '' }, 'en'), '中文内容');
+});
+
+test('semantic question slug and path helpers expose stable SEO routes', () => {
+  assert.equal(getQuestionSlug(101), 'transformer-core-components-interview-101');
+  assert.equal(getQuestionPathById(101), '/questions/transformer-core-components-interview-101');
 });

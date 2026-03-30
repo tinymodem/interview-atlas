@@ -9,6 +9,7 @@ import {
   type Locale,
 } from '@/lib/data';
 import { t } from '@/lib/i18n';
+import { getTopics, getTopicPath } from '@/lib/seo';
 
 const learningPath = [
   { step: '01', title: 'pathStep1', body: 'pathStep1Body' },
@@ -96,6 +97,7 @@ export default function HomepageContent({ locale }: { locale: Locale }) {
   const latestTracks = getHomepageLatestTracks(locale);
   const hotTracks = getHomepageHotTracks(locale);
   const hotQuestions = getHomepageHotQuestions(locale);
+  const topics = getTopics(locale).slice(0, 4);
 
   return (
     <div className="space-y-8">
@@ -121,6 +123,24 @@ export default function HomepageContent({ locale }: { locale: Locale }) {
           tracks={hotTracks}
           cta={t(locale, 'openTopic')}
         />
+      </section>
+
+      <section className="surface-panel p-6">
+        <div className="mb-5">
+          <h2 className="mt-3 text-2xl font-semibold text-[color:var(--text)]">搜索专题</h2>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          {topics.map((topic) => (
+            <Link
+              key={topic.slug}
+              href={getTopicPath(topic.slug)}
+              className="homepage-list-card block rounded-[24px] p-5"
+            >
+              <h3 className="text-lg font-semibold text-[color:var(--text)]">{topic.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-[color:var(--text-light)]">{topic.description}</p>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <HotQuestionList locale={locale} items={hotQuestions} />

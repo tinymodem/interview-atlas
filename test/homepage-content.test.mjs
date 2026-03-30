@@ -29,5 +29,5 @@ test('homepage hot questions expose question cards with linked tracks', () => {
   assert.equal(hotQuestions.length >= 4, true);
   assert.equal(hotQuestions[0]?.trackTitle, '大模型应用开发');
   assert.match(hotQuestions[0]?.questionTitle || '', /Transformer|RAG|评测/);
-  assert.equal(hotQuestions[0]?.href.startsWith('/q/'), true);
+  assert.equal(hotQuestions[0]?.href.startsWith('/questions/'), true);
 });

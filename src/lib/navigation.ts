@@ -1,5 +1,6 @@
 import { getJob, getJobs, getQuestion } from './data.ts';
 import { getLocalizedPath, getText, type Locale } from './localization.ts';
+import { getQuestionPathById } from './seo.ts';
 
 export interface SidebarQuestion {
   id: number;
@@ -98,7 +99,7 @@ export function getQuestionSidebar(jobSlug: string, currentQuestionId: number, l
         chapterTitle: getText(chapter.title, locale) || chapter.number,
         questions: section.questions.map((question) => ({
           id: question.id,
-          href: getLocalizedPath(locale, `/q/${question.id}`),
+          href: getLocalizedPath(locale, getQuestionPathById(question.id)),
           label: getText(question.title, locale) || question.number,
           active: question.id === currentQuestionId,
         })),
@@ -125,7 +126,7 @@ export function getJobStartHere(jobSlug: string, locale: Locale): JobStartHereDa
       return {
         chapterTitle: getText(chapter.title, locale) || chapter.number,
         sectionTitle: getText(section.title, locale) || section.number,
-        href: getLocalizedPath(locale, `/q/${firstQuestion.id}`),
+        href: getLocalizedPath(locale, getQuestionPathById(firstQuestion.id)),
         question: {
           id: firstQuestion.id,
           title: getText(firstQuestion.title, locale) || firstQuestion.number,

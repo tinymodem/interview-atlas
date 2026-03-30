@@ -3,6 +3,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { homepageContent } from './homepage-data.ts';
 import { getLocalizedPath, getText } from './localization.ts';
+import { getQuestionPathById } from './seo.ts';
 export { getLocaleLabel, getLocalizedPath, getText } from './localization.ts';
 
 export const locales = ['zh'] as const;
@@ -107,6 +108,13 @@ export interface HomepageQuestionCard {
   trackTitle: string;
   category: string;
   questionTitle: string;
+  href: string;
+}
+
+export interface HomepageTopicCard {
+  slug: string;
+  title: string;
+  description: string;
   href: string;
 }
 
@@ -225,7 +233,7 @@ export function getHomepageHotQuestions(locale: Locale): HomepageQuestionCard[] 
     trackTitle: getText(item.trackTitle, locale) || '',
     category: getText(item.category, locale) || '',
     questionTitle: getText(item.questionTitle, locale) || '',
-    href: item.href,
+    href: item.href.startsWith('/q/') ? getQuestionPathById(Number(item.href.split('/').pop())) : item.href,
   }));
 }
 

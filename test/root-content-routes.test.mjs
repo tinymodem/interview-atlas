@@ -8,6 +8,9 @@ test('root chinese question route exists', () => {
 
   const source = readFileSync(path, 'utf8');
   assert.match(source, /const locale = 'zh';/);
+  assert.match(source, /robots:/);
+  assert.match(source, /index: false/);
+  assert.match(source, /LegacyQuestionRedirect/);
   assert.doesNotMatch(source, /locale: 'en'/);
 });
 
