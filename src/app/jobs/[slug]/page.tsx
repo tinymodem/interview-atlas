@@ -5,6 +5,7 @@ import ChapterTree from '@/components/ChapterTree';
 import { getCanonicalUrl, getJob, getJobs, getLocalizedPath, getText } from '@/lib/data';
 import { t } from '@/lib/i18n';
 import { getJobStartHere } from '@/lib/navigation';
+import { getQuestionPathById } from '@/lib/seo';
 
 const locale = 'zh';
 
@@ -36,6 +37,16 @@ export default async function JobPage({ params }: { params: Promise<{ slug: stri
 
   const startHere = getJobStartHere(job.slug, locale);
   const sectionCount = job.chapters.reduce((sum, chapter) => sum + chapter.sections.length, 0);
+  const chapters = job.chapters.map((chapter) => ({
+    ...chapter,
+    sections: chapter.sections.map((section) => ({
+      ...section,
+      questions: section.questions.map((question) => ({
+        ...question,
+        href: getLocalizedPath(locale, getQuestionPathById(question.id)),
+      })),
+    })),
+  }));
 
   return (
     <div className="space-y-6">
@@ -102,7 +113,7 @@ export default async function JobPage({ params }: { params: Promise<{ slug: stri
             <p className="eyebrow">{t(locale, 'chapterDirectory')}</p>
             <h2 className="mt-3 text-3xl font-semibold text-[color:var(--text)]">{t(locale, 'browseTrackQuestions')}</h2>
           </div>
-          <ChapterTree chapters={job.chapters} locale={locale} />
+          <ChapterTree chapters={chapters} locale={locale} />
         </section>
       </section>
     </div>

@@ -47,7 +47,7 @@ function ChapterSection({ chapter, locale }: { chapter: Chapter; locale: Locale 
                   {section.questions.map((question) => (
                     <Link
                       key={question.id}
-                      href={getLocalizedPath(locale, `/q/${question.id}`)}
+                      href={question.href || getLocalizedPath(locale)}
                       className="group flex items-start gap-3 rounded-[16px] bg-[color:var(--surface)] px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]"
                     >
                       <span className="mt-0.5 rounded-full bg-[color:var(--surface-subtle)] px-2 py-1 text-xs font-semibold text-[color:var(--brand-strong)]">

@@ -35,6 +35,7 @@ export interface QuestionSummary {
   id: number;
   number: string;
   title: LocalizedText;
+  href?: string;
 }
 
 export interface Section {
@@ -177,7 +178,7 @@ export function getHomepageRecommendedStarts(locale: Locale): HomepageRecommende
             trackName: getText(detail.name, locale) || detail.slug,
             trackDescription: getText(detail.description, locale),
             questionCount: detail.questionCount,
-            href: getLocalizedPath(locale, `/q/${firstQuestion.id}`),
+            href: getLocalizedPath(locale, getQuestionPathById(firstQuestion.id)),
             chapterTitle: getText(chapter.title, locale) || chapter.number,
             sectionTitle: getText(section.title, locale) || section.number,
             question: {

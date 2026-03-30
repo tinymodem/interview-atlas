@@ -24,7 +24,7 @@ test('homepage recommended starts exposes localized track entry cards', () => {
     trackName: '大模型工程师',
     trackDescription: '聚焦模型原理、推理优化、RAG、Agent 和评测。',
     questionCount: 13,
-    href: '/q/101',
+    href: '/questions/transformer-core-components-interview-101',
     chapterTitle: '模型基础',
     sectionTitle: 'Transformer',
     question: {
