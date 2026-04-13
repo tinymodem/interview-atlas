@@ -35,3 +35,5 @@ npm run build
 5. 若使用 Actions，请在构建环境中保留默认的 `GITHUB_ACTIONS=true`，站点会自动使用 `/interview-atlas` 作为子路径
 
 部署完成后，建议提交 `sitemap.xml`、`robots.txt` 所对应的公开 URL 到 Bing Webmaster Tools 和 Google Search Console。
+
+若使用 IndexNow，请先把 `<key>.txt` 放到 `public/`，确保部署后该文件能通过公开站点 URL 访问，再提交 URL。仅拿到 `202 Accepted` 不代表 Bing 已通过 key 校验。
